@@ -19,7 +19,7 @@
                     
                     <h2 class="title-global">Major gift giving</h2>
 <p>
-    Discover the profound impact of major gift-giving with AidMeUK as we strive to make a difference in the lives of those in need. Major gifts are powerful expressions of generosity that enable us to amplify our charitable initiatives and bring about meaningful change on a larger scale. Here's why major gift-giving matters and how you can become a pivotal force for positive transformation:
+    Discover the profound impact of major gift-giving with Bondhon as we strive to make a difference in the lives of those in need. Major gifts are powerful expressions of generosity that enable us to amplify our charitable initiatives and bring about meaningful change on a larger scale. Here's why major gift-giving matters and how you can become a pivotal force for positive transformation:
 </p>                    
 </br>
                     
@@ -54,7 +54,7 @@ By making a major gift, you play a pivotal role in driving sustainable change. Y
 
 
  
-AidMeUK values and recognizes the significance of major gifts. We offer personalized engagement opportunities, keeping you informed about the impact of your contribution. You become an integral part of our journey, witnessing firsthand the transformative outcomes made possible by your generosity.
+Bondhon values and recognizes the significance of major gifts. We offer personalized engagement opportunities, keeping you informed about the impact of your contribution. You become an integral part of our journey, witnessing firsthand the transformative outcomes made possible by your generosity.
 </p>                    
 </br>
                     

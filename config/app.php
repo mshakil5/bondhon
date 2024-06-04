@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://www.aidmeuk.com'),
+    'url' => env('APP_URL', 'https://www.bondhon.com'),
 
     'asset_url' => env('ASSET_URL'),
 

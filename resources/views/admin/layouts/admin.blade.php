@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>Aidme</title>
+    <title>Bondhon</title>
     <link rel="icon" href="{{ asset('assets/admin/images/favicon.png')}}">
     
 
@@ -78,10 +78,11 @@
                 </div>
 
                 
-                <li><a href="{{route('admin.donationtype')}}" class="nav-link {{ (request()->is('admin/donation-type*')) ? 'current' : '' }}">Appeals</a></li>
+               {{-- <li><a href="{{route('admin.donationtype')}}" class="nav-link {{ (request()->is('admin/donation-type*')) ? 'current' : '' }}">Appeals</a></li> --}}
 
-                <li><a href="{{route('admin.projects')}}" class="nav-link {{ (request()->is('admin/projects*')) ? 'current' : '' }}">Projects</a></li>
+                {{-- <li><a href="{{route('admin.projects')}}" class="nav-link {{ (request()->is('admin/projects*')) ? 'current' : '' }}">Projects</a></li> --}}
 
+                <li><a href="{{route('admin.gallery')}}" class="nav-link {{ (request()->is('admin/gallery*')) ? 'current' : '' }}">Gallery</a></li>
                 
 
                 <li><a href="{{url('admin/company-detail')}}" class="nav-link {{ (request()->is('admin/company-detail*')) ? 'current' : '' }}">Company Details</a></li>

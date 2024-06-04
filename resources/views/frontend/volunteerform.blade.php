@@ -77,7 +77,7 @@
             <div class="col-lg-10 mx-auto authBox">
                 <div class="row">
                     
-                    <div class="title text-center txt-secondary">AidMeUK</div>
+                    <div class="title text-center txt-secondary">Bondhon</div>
                     <small class="text-center mb-5">(Uniting for a better community)</small>
                         @if (isset($message))
                         <div class='alert alert-success title text-center txt-secondary'><b>{{ $message }}</b></div>
@@ -216,7 +216,7 @@
                             </div>
 
                             <div>
-                                <p> <b>Declaration</b>: I hereby read, understand and acknowledge all rules of AidMeUK.</p>
+                                <p> <b>Declaration</b>: I hereby read, understand and acknowledge all rules of Bondhon.</p>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-4">
@@ -251,7 +251,7 @@
                             <div class="col-lg-12 mt-3">
                                 <p class="para mb-3 text-muted fs-6 ">
                                     Registered Office:York United Group Ltd, 10 Newgate (2 nd Floor), York, North Yorkshire, YO1 7LA <br>
-                                    Company Registration Number: 14988459 <a href="https://www.aidmeuk.com/" target="blank">www.aidmeuk.com</a> , info@aidmeuk.com
+                                    Company Registration Number: 14988459 <a href="https://www.bondhon.com/" target="blank">www.bondhon.com</a> , info@bondhon.com
     
                                 </p>
                             </div>

@@ -42,7 +42,7 @@
 
                     <h2 class="title-global">How it all started</h2>
 
-                     <p>In January 2023, Makshud Rahman gathered some of his friends to discuss and plan a social organisation to help and support underprivileged people, such as refugees, homelessness and orphaned children.  With six eagerly, interested friends they decided to form a company and pursue their charitable work; In July 2023 they settled on a company name and registered their company - York United Group Ltd. (not for profit - Registration number -14988459).
+                     <p>In January 2023, they gathered some of his friends to discuss and plan a social organisation to help and support underprivileged people, such as refugees, homelessness and orphaned children.  With six eagerly, interested friends they decided to form a company and pursue their charitable work; In July 2023 they settled on a company name and registered their company - York United Group Ltd. (not for profit - Registration number -14988459).
                      <br/><br/>
                      Each individual friend, personally donates and contributes earnestly, but together with their passion and enthusiasm for helping and giving back to the society, they are confident in elevating their organisation collectively and to do something bigger and better with their hearts content.
                      <br/><br/>

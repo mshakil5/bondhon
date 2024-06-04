@@ -21,7 +21,7 @@
 
                     <b>Honouring Generosity: Our Distinguished Contributors</b>
 
-                     <p>Introduction: AidmeUK, we believe in the power of collective kindness to make a lasting impact on the lives of those in need. In our ongoing efforts to support and uplift communities, we are thrilled to introduce a special initiative that recognizes the extraordinary generosity of individuals who have gone above and beyond in their commitment to making a difference</p></br>
+                     <p>Introduction: Bondhon, we believe in the power of collective kindness to make a lasting impact on the lives of those in need. In our ongoing efforts to support and uplift communities, we are thrilled to introduce a special initiative that recognizes the extraordinary generosity of individuals who have gone above and beyond in their commitment to making a difference</p></br>
                      
                     <p>We are proud to present our distinguished contributor list, featuring the names, photos, and details of those remarkable individuals who have donated<b> £1000.00</b> or more to our cause. These philanthropic leaders have not only demonstrated a deep sense of compassion but have also become integral partners in our mission to create positive change.</p>
                     
@@ -32,10 +32,7 @@
                     <b>Why Recognition Matters</b>
                     
                     <p> Recognizing our generous contributors is not just about acknowledging their financial support; it's about celebrating a shared commitment to making the world a better place. By showcasing these individuals on our charity website, we aim to inspire others to join in our cause, fostering a sense of community and collective responsibility.</p>
-                    
-                        </br>
-                         <p style="color: #fc0fc0;"><b></b><span style="color: #ff00ff;"><a style="color: #000000;" href="{{route('frontend.contributors')}}" target="_blank" rel="noopener noreferrer"><h1> Meet Our Generous Contributors</h1></a></span></p>
-                    
+                     
                 </div>
             </div>
         </div>

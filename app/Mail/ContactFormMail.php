@@ -40,7 +40,7 @@ class ContactFormMail extends Mailable
      */
     public function build()
     {
-        return $this->from('do-not-reply@aidmeuk.com', 'Aidme')
+        return $this->from('do-not-reply@bondhon.com', 'bondhon')
                     ->subject($this->array['subject'])
                     ->markdown('emails.contactmail');
     }

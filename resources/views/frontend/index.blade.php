@@ -102,7 +102,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AidmeUK - Uniting for a better communitry</title>
+    <title>bondhon - Uniting for a better communitry</title>
     <link rel="stylesheet" href="./css/bootstrap@5.3.0_dist_css_bootstrap.min.css">
     <!-- <link rel="stylesheet" type="text/css" href="./css/slick.css" />
     <link rel="stylesheet" type="text/css" href="./css/slick-theme.css" /> -->
@@ -114,7 +114,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="Welcome to Aidmeuk- A popular charity in the UK - We will work alongside underprivileged people, supporters, companies, including trusts and institutions to build a better community.">
+    <meta name="description" content="Welcome to bondhon- A popular charity in the UK - We will work alongside underprivileged people, supporters, companies, including trusts and institutions to build a better community.">
     <meta name="author" content="">
     
     <meta name="keywords" content="charity,donatio, giving, muslim aid, uk aid, pure water, ">
@@ -166,44 +166,6 @@
     </div>
 </section>
 
-<section class="featured-post">
-    <div class="container">
-        <div class="row">
-
-            @foreach (\App\Models\DonationType::where('type', 'Projects')->where('status', 0)->orderby('id', 'DESC')->limit(3)->get() as $projects)
-
-            <div class="col-md-4">
-                <div class="inner">
-                    <div class="items wow fadeIn" data-wow-delay="0.6s">
-                        <a href="{{route('projectDetails', $projects->id)}}" class="title fw-bold">
-                            <div class="photo">
-                                <img src="{{ asset('images/'.$projects->image)}}" alt="" class="img-fluid">
-                            </div>
-                        </a>
-                        <div class="bottom-part">
-                            <div class="items">
-                                <a href="{{route('projectDetails', $projects->id)}}" class="title fw-bold">{{$projects->title}}</a>
-                                {{-- <div class="sub-title">Giving money to food </div> --}}
-                            </div>
-                            <div class="items">
-                                <div class="link">
-                                    <a href="{{route('projectDetails', $projects->id)}}">
-                                        <iconify-icon icon="ci:chevron-right-duo"></iconify-icon>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-
-
-
-        </div>
-    </div>
-</section>
-
 <section class="join py-5">
     <div class="container">
         <div class="row align-items-center">
@@ -212,9 +174,9 @@
             </div>
             <div class=" col-md-4 d-flex align-items-center justify-content-center">
               <p><h2>York United Group Ltd</br>
-SC :30 99 50</br>
-AC :10350363</h2>
-</p>
+                SC :30 99 50</br>
+                AC :10350363</h2>
+                </p>
                 <!--
                 <a class="btn-theme " href="{{route('frontend.volunteerform')}}">learn more
                     <div class="icon">
@@ -227,64 +189,6 @@ AC :10350363</h2>
 </section>
 
 
-<section class="post-view spacer">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8 mx-auto ">
-                {{-- <h6 class="txt-primary fs-4 d-flex justify-content-center  align-items-center">
-                    <iconify-icon icon="ph:heart-fill"></iconify-icon>
-                    Appeals
-                </h6> --}}
-                <h2 class="title-global text-center">
-                    Appeals
-                </h2>
-            </div>
-        </div>
-        <div class="row mt-5">
-
-
-
-
-            @foreach (\App\Models\DonationType::where('type', 'Appeals')->orderby('id', 'DESC')->where('status', 0)->limit(6)->get() as $appeals)
-
-            <div class="col-md-4 col-sm-6 col-xs-12  wow fadeInUp " data-wow-delay="0.6s">
-                <div class="card-theme">
-                    <a href="{{route('projectDetails', $appeals->id)}}">
-                        <div class="photo">
-                            <img src="{{ asset('images/'.$appeals->image)}}" class="img-fluid" alt="">
-                        </div>
-                    </a>
-                    
-                    <div class="content p-4">
-                        <div class="text-center">
-                            <a href="{{route('frontend.donation')}}" class="btn-theme " style="top: -50px">
-                                <div class="icon">
-                                    <iconify-icon icon="mdi:hand-heart" class=" mx-2"></iconify-icon>
-                                </div>
-                                Donation
-                            </a>
-                        </div>
-                        
-                        <div>
-                            <a href="{{route('projectDetails', $appeals->id)}}" class="fs-3 link-title d-block my-3" style="top: -50px">
-                                {{$appeals->title}}
-                            </a>
-                            <p>
-                                {!!  Str::limit($appeals->description , 70) !!}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            @endforeach
-            
-
-
-
-        </div>
-    </div>
-</section>
 
 
 {{-- gallery here  --}}
@@ -385,7 +289,7 @@ AC :10350363</h2>
                     Latest news
                 </h6>
                 <h2 class="title-global text-center">
-                    Get Our AidMeUK Every <br>
+                    Get Our bondhon Every <br>
                     News & Blog
                 </h2>
             </div>

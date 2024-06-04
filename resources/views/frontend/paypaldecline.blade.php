@@ -29,7 +29,7 @@
 <script>
     // redirect to google after 5 seconds
 window.setTimeout(function() {
-    window.location.href = 'https://www.aidmeuk.com';
+    window.location.href = 'https://www.bondhon.com';
 }, 5000);
 </script>
 

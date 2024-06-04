@@ -86,8 +86,8 @@ class RegisterController extends Controller
                 $array['name'] = $data['name'];
                 $array['email'] = $data['email'];
                 $array['message'] = $msg;
-                $array['subject'] = "Welcome to Aidme";
-                $array['from'] = 'do-not-reply@aidmeuk.com';
+                $array['subject'] = "Welcome to bondhon";
+                $array['from'] = 'do-not-reply@bondhon.com';
                 $email = $data['email'];
                 $a = Mail::to($contactmail)
                     ->send(new RegistrationMail($array));
@@ -159,8 +159,8 @@ class RegisterController extends Controller
             $array['name'] = $name;
             $array['email'] = $email;
             $array['message'] = $msg;
-            $array['subject'] = "Welcome to Aidme";
-            $array['from'] = 'do-not-reply@aidmeuk.com';
+            $array['subject'] = "Welcome to bondhon";
+            $array['from'] = 'do-not-reply@bondhon.com';
             
             $a = Mail::to($contactmail)
                 ->cc($adminmail)

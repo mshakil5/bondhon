@@ -51,6 +51,7 @@ Route::get('authorized/facebook/callback', [SocialLoginController::class, 'handl
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [FrontendController::class, 'index'])->name('homepage');
 Route::get('/about', [FrontendController::class, 'about'])->name('frontend.about');
+Route::get('/gallery', [FrontendController::class, 'gallery'])->name('frontend.gallery');
 Route::get('/work', [FrontendController::class, 'work'])->name('frontend.work');
 Route::get('/volunteer', [FrontendController::class, 'volunteer'])->name('frontend.volunteer');
 Route::get('/volunteer-create', [FrontendController::class, 'volunteerCreate'])->name('frontend.volunteerform');

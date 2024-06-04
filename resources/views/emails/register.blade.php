@@ -7,6 +7,6 @@
     {!! $array['message'] !!}
 </p>
 
-<a href="https://www.aidmeuk.com" target="blank">AidMeUk</a>
+<a href="https://www.bondhon.com" target="blank">bondhon</a>
 
 @endcomponent
