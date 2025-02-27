@@ -76,17 +76,6 @@
     }
 
 
-    /* .lightbox {
-    display: none !important;
-    } */
-    /* .lb-cancel{
-        display: none !important;
-    } */
-    /* .lb-nav a {
-    display: none !important;
-    } */
-
-
     .lb-outerContainer {
     /* display: none !important; */
     }
@@ -126,29 +115,14 @@
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
 
-            @foreach (\App\Models\Slider::where('status',1)->get() as $key => $slider)
-            <div class="carousel-item active">
-                <img src="{{asset('images/slider/'.$slider->photo)}}" class="d-block w-100" alt="slider photo missing">
+          @foreach (\App\Models\Slider::where('status',1)->get() as $key => $slider)
+            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                <img src="{{ asset('images/slider/'.$slider->photo) }}" class="d-block w-100" alt="slider photo missing">
                 <div class="carousel-text container">
-                    {{-- <h5 class="txt-primary">Raising Your Helping Hands</h5> --}}
                     <h1 class="main-title">{{$slider->title}}</h1>
-                    {{-- <div class="d-flex flex-wrap align-items-center justify-content-center-sm">
-                        <a href="" class="btn-theme">
-                            <div class="icon">
-                                <iconify-icon icon="mdi:hand-heart" class=" mx-2"></iconify-icon>
-                            </div>
-                            learn more
-                        </a>
-                        <a href=" " class="btn-theme bg-secondary">
-                            <div class="icon">
-                                <iconify-icon icon="mdi:hand-heart" class=" mx-2"></iconify-icon>
-                            </div>
-                            our cases
-                        </a>
-                    </div> --}}
                 </div>
             </div>
-            @endforeach
+          @endforeach
             
             
 
@@ -166,27 +140,25 @@
     </div>
 </section>
 
-<section class="join py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class=" col-md-8">
-                <h2 class="display-6 m-0 text-center">Donate direct to our Bank account: </h2>
-            </div>
-            <div class=" col-md-4 d-flex align-items-center justify-content-center">
-              <p><h2>York United Group Ltd</br>
-                SC :30 99 50</br>
-                AC :10350363</h2>
-                </p>
-                <!--
-                <a class="btn-theme " href="{{route('frontend.volunteerform')}}">learn more
-                    <div class="icon">
-                        <iconify-icon icon="ph:heart-fill"></iconify-icon>
-                    </div>
-                </a>-->
-            </div>
-        </div>
-    </div>
+<section class="join-section">
+      <section class="join py-5 mt-5">
+          <div class="container">
+              <div class="row align-items-center">
+                  <div class="col-md-8">
+                      <h2 class="display-6 m-0 text-center">Donate direct to our Bank account:</h2>
+                  </div>
+                  <div class="col-md-4 d-flex align-items-center justify-content-center">
+                      <h2>
+                          York United Group Ltd</br>
+                          SC :30 99 50</br>
+                          AC :10350363
+                      </h2>
+                  </div>
+              </div>
+          </div>
+      </section>
 </section>
+
 
 
 
@@ -410,7 +382,6 @@
 
 <script>
     $(document).ready(function() {
-        lightbox.init();
 
         $('.category').click(function() {
             

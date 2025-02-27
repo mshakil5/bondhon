@@ -202,7 +202,6 @@
 
 <script>
     $(document).ready(function() {
-        lightbox.init();
 
         $('.category').click(function() {
             

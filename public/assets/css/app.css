@@ -592,6 +592,10 @@ p {
   background-color: #88893d;
   color: #fff;
 }
+.join-section {
+  background-color: #f4f2f1 !important;
+  padding-top: 2px;
+}
 
 .donate {
   background: linear-gradient(to bottom, rgba(50, 25, 0, 0.8509803922), rgba(42, 30, 2, 0.8901960784)), url(../images/home/2.jpg);
