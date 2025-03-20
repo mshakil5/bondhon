@@ -16,7 +16,7 @@
                     {{-- <h2 class="title-global">{{\App\Models\Master::where('name','about')->first()->title}}</h2>
                     {!! \App\Models\Master::where('name','about')->first()->description !!} --}}
 <p>
-    <b>AIDMEUK</b>, we are committed to maintaining the highest standards of transparency and accountability. We believe that openness with our stakeholders, including donors, beneficiaries, and the public, is crucial in building trust and ensuring the effective use of resources for our charitable mission.
+    <b>Bondhon</b>, we are committed to maintaining the highest standards of transparency and accountability. We believe that openness with our stakeholders, including donors, beneficiaries, and the public, is crucial in building trust and ensuring the effective use of resources for our charitable mission.
 </p>                    <h2 class="title-global">Annual Financial Report</h2>
 </br>
                      <p> One of the keyways we demonstrate transparency is through the publication of our annual financial report. This comprehensive document provides a detailed overview of our financial activities, including income, expenses, and the allocation of funds to various programs and initiatives. Our stakeholders can access this report on our website.</p>

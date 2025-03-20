@@ -22,7 +22,7 @@
 
                     <h2 class="title-global">Ways to Contribute and Make a Difference</h2>
 
-                     <p>Thank you for considering a contribution to AIDME. Your support plays a crucial role in enabling us to make a positive impact on the lives of those in need. Here are various ways you can contribute and help us further our mission</p>
+                     <p>Thank you for considering a contribution to Bondhon. Your support plays a crucial role in enabling us to make a positive impact on the lives of those in need. Here are various ways you can contribute and help us further our mission</p>
                     </br><br/>
                     
                      <b>Monetary Donations:</b>
@@ -61,7 +61,7 @@
 
                      <p>Explore partnership opportunities if you represent an organization or group. Together, we can amplify our impact and reach even more individuals.</p>
                     </br></br>
-                    <p>Your support, regardless of the form it takes, is instrumental in empowering us to create lasting change. Contact us at info@aidmeuk.com for more details on any of these contribution avenues. Together, we can make a meaningful difference in the lives of those we serve</p>
+                    <p>Your support, regardless of the form it takes, is instrumental in empowering us to create lasting change. Contact us at info@bondhon.com for more details on any of these contribution avenues. Together, we can make a meaningful difference in the lives of those we serve</p>
                     
                 </div>
             </div>

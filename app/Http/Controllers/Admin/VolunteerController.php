@@ -99,7 +99,7 @@ class VolunteerController extends Controller
                 $array['email'] = $data->email;
                 $array['message'] = "Volunteer registration approved successfully.";
                 $array['subject'] = "Volunteer registration approved";
-                $array['from'] = 'do-not-reply@aidmeuk.com';
+                $array['from'] = 'do-not-reply@bondhon.com';
                 
                 $a = Mail::to($contactmail)
                     ->send(new VolunteerMail($array));

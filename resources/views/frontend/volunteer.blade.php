@@ -29,7 +29,7 @@
 
                     <h2 class="title-global">About us</h2>
 
-                     <p>AID ME UK is a non-profit organisation working to strengthen humanity’s fight against poverty, social injustice and natural disaster. Through the provision of immediate relief and the establishment of local community media, we aim to invest in real, effective solutions.</p>
+                     <p>Bondhon UK is a non-profit organisation working to strengthen humanity’s fight against poverty, social injustice and natural disaster. Through the provision of immediate relief and the establishment of local community media, we aim to invest in real, effective solutions.</p>
                     <p>We work to establish healthcare, education, and livelihood programmes that pave the way for empowered, self-serving communities. We also provide food, medical aid, and disaster relief during emergencies, a critical intervention that saves lives.</p>
                     
                     <h2 class="title-global">Our mission </h2>

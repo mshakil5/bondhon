@@ -76,17 +76,6 @@
     }
 
 
-    /* .lightbox {
-    display: none !important;
-    } */
-    /* .lb-cancel{
-        display: none !important;
-    } */
-    /* .lb-nav a {
-    display: none !important;
-    } */
-
-
     .lb-outerContainer {
     /* display: none !important; */
     }
@@ -102,7 +91,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AidmeUK - Uniting for a better communitry</title>
+    <title>bondhon - Uniting for a better communitry</title>
     <link rel="stylesheet" href="./css/bootstrap@5.3.0_dist_css_bootstrap.min.css">
     <!-- <link rel="stylesheet" type="text/css" href="./css/slick.css" />
     <link rel="stylesheet" type="text/css" href="./css/slick-theme.css" /> -->
@@ -114,7 +103,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="Welcome to Aidmeuk- A popular charity in the UK - We will work alongside underprivileged people, supporters, companies, including trusts and institutions to build a better community.">
+    <meta name="description" content="Welcome to bondhon- A popular charity in the UK - We will work alongside underprivileged people, supporters, companies, including trusts and institutions to build a better community.">
     <meta name="author" content="">
     
     <meta name="keywords" content="charity,donatio, giving, muslim aid, uk aid, pure water, ">
@@ -126,29 +115,14 @@
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
 
-            @foreach (\App\Models\Slider::where('status',1)->get() as $key => $slider)
-            <div class="carousel-item active">
-                <img src="{{asset('images/slider/'.$slider->photo)}}" class="d-block w-100" alt="slider photo missing">
+          @foreach (\App\Models\Slider::where('status',1)->get() as $key => $slider)
+            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                <img src="{{ asset('images/slider/'.$slider->photo) }}" class="d-block w-100" alt="slider photo missing">
                 <div class="carousel-text container">
-                    {{-- <h5 class="txt-primary">Raising Your Helping Hands</h5> --}}
                     <h1 class="main-title">{{$slider->title}}</h1>
-                    {{-- <div class="d-flex flex-wrap align-items-center justify-content-center-sm">
-                        <a href="" class="btn-theme">
-                            <div class="icon">
-                                <iconify-icon icon="mdi:hand-heart" class=" mx-2"></iconify-icon>
-                            </div>
-                            learn more
-                        </a>
-                        <a href=" " class="btn-theme bg-secondary">
-                            <div class="icon">
-                                <iconify-icon icon="mdi:hand-heart" class=" mx-2"></iconify-icon>
-                            </div>
-                            our cases
-                        </a>
-                    </div> --}}
                 </div>
             </div>
-            @endforeach
+          @endforeach
             
             
 
@@ -204,7 +178,7 @@
     </div>
 </section>
 
-<section class="join py-5 d-none">
+<section class="join py-5">
     <div class="container">
         <div class="row align-items-center">
             <div class=" col-md-8">
@@ -385,7 +359,7 @@ AC :10350363</h2>
                     Latest news
                 </h6>
                 <h2 class="title-global text-center">
-                    Get Our AidMeUK Every <br>
+                    Get Our bondhon Every <br>
                     News & Blog
                 </h2>
             </div>
@@ -506,7 +480,6 @@ AC :10350363</h2>
 
 <script>
     $(document).ready(function() {
-        lightbox.init();
 
         $('.category').click(function() {
             

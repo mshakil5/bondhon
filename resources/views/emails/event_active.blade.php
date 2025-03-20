@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AidMeUk</title>
+    <title>bondhon</title>
 </head>
 
 <body style="margin: 0; padding: 0;">
@@ -44,7 +44,7 @@
 
         </div>
         <div style="text-align:center; background:  #f3f3f3;padding: 15px; margin-top: 5px;">
-            <span style="color: #143157;">&copy; AidMeUk, all right reserved 2023</span>
+            <span style="color: #143157;">&copy; bondhon, all right reserved 2023</span>
         </div>
        
     </div>

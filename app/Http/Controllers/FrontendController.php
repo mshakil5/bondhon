@@ -37,6 +37,13 @@ class FrontendController extends Controller
         return view('frontend.about');
     }
 
+    public function gallery()
+    {
+        $galleries = Gallery::all();
+        $categories = Category::all();
+        return view('frontend.gallery', compact('galleries', 'categories'));
+    }
+
     public function work()
     {
         return view('frontend.work');

@@ -6,7 +6,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aidmeuk</title>
+    <title>Bondhon</title>
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap@5.3.0_dist_css_bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick-theme.css')}}" />
@@ -17,7 +17,7 @@
     
     <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css')}}">
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/popup.css')}}"> --}}
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css"> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
 </head>
 
 <body>
