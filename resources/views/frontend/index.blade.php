@@ -204,7 +204,7 @@
     </div>
 </section>
 
-<section class="join py-5">
+<section class="join py-5 d-none">
     <div class="container">
         <div class="row align-items-center">
             <div class=" col-md-8">
