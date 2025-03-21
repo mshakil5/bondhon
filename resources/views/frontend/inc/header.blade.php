@@ -56,15 +56,11 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{route('frontend.about')}}" target="_blank">About</a>
+                                <a class="nav-link" aria-current="page" href="{{route('frontend.about')}}" >About</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{route('frontend.gallery')}}" target="_blank">Gallery</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="#" target="_blank">Example</a>
+                                <a class="nav-link" aria-current="page" href="{{route('frontend.gallery')}}" >Gallery</a>
                             </li>
 
                             <li class="nav-item">
