@@ -102,4 +102,22 @@ class SliderController extends Controller
         }
 
     }
+
+    public function toggleStatus(Request $request)
+    {
+        $brand = Slider::find($request->brand_id);
+        if (!$brand) {
+            return response()->json(['status' => 404, 'message' => 'Slider not found']);
+        }
+
+        $brand->status = $request->status;
+        $brand->save();
+        if($request->status==1){
+            $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Active Successfully.</b></div>";
+            return response()->json(['status'=> 300,'message'=>$message]);
+        }else{
+            $message ="<div class='alert alert-danger'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Inactive Successfully.</b></div>";
+            return response()->json(['status'=> 300,'message'=>$message]);
+        }
+    }
 }

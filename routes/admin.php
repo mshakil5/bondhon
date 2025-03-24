@@ -72,6 +72,7 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::put('/sliders/{id}', [SliderController::class, 'update']);
     Route::get('/sliders/{id}', [SliderController::class, 'delete']);
 
+    Route::post('/slider-status', [SliderController::class, 'toggleStatus'])->name('slider.status');
 
 
     // contact mail 

@@ -110,8 +110,30 @@
     </head>
 
 
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        {{-- <div class="carousel-indicators">
+            @foreach($sliders as $index => $slider)
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
+            @endforeach
+        </div> --}}
+        <div class="carousel-inner">
+            @foreach (\App\Models\Slider::where('status',1)->get() as $index => $slider)
+                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                    <img src="{{ asset('images/slider/' . $slider->photo) }}" class="d-block w-100" alt="{{ $slider->photo }}">
+                    <div class="carousel-caption text-white d-none d-md-block">
+                        @if($slider->title)
+                        <h2 class="text-white">{{ $slider->title }}</h2>
+                        @endif
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        
+    </div>
 
-<section class="slider">
+
+
+<section class="slider d-none">
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
 

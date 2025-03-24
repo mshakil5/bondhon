@@ -71,6 +71,7 @@
                         <h3> All Data</h3>
                     </div>
                     <div class="card-body">
+                        <div class="stsermsg"></div>
                         <table class="table table-bordered table-hover" id="exdatatable">
                             <thead>
                                 <tr>
@@ -121,6 +122,38 @@
 
 @endsection
 @section('script')
+
+<script>
+    $(document).ready(function() {
+        $('.toggle-class').change(function() {
+            var brand_id = $(this).data('id');
+            var status = $(this).prop('checked') ? 1 : 0;
+  
+            $.ajax({
+                url: '{{ route("slider.status") }}',
+                method: "POST",
+                data: {
+                    brand_id: brand_id,
+                    status: status,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(d) {
+                    console.log(d);
+                    if (d.status == 303) {
+                        $(".stsermsg").html(d.message);
+                    }else if(d.status == 300){
+                        $(".stsermsg").html(d.message);
+                        window.setTimeout(function(){location.reload()},2000)
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+  </script>
+
 
     <script>
         $(document).ready(function () {
