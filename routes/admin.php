@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\EmailContentController;
 use App\Http\Controllers\Admin\DonationTypeController;
 use App\Http\Controllers\Admin\VolunteerController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\SectionController;
 
 
 
@@ -73,6 +74,9 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/sliders/{id}', [SliderController::class, 'delete']);
 
     Route::post('/slider-status', [SliderController::class, 'toggleStatus'])->name('slider.status');
+
+    Route::get('/section-status', [SectionController::class, 'sectionStatus'])->name('sectionstatus');
+    Route::post('/section-status/update', [SectionController::class, 'updateSectionStatus'])->name('updateSectionStatus');
 
 
     // contact mail 

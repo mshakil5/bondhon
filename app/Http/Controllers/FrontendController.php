@@ -20,6 +20,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\URL;
 use DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\SectionStatus;
 
 class FrontendController extends Controller
 {
@@ -28,8 +29,8 @@ class FrontendController extends Controller
         
         $galleries = Gallery::all();
         $categories = Category::all();
-
-        return view('frontend.index', compact('galleries', 'categories'));
+        $section_status = SectionStatus::first();
+        return view('frontend.index', compact('galleries', 'categories', 'section_status'));
     }
 
     public function about()

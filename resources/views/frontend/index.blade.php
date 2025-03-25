@@ -109,7 +109,7 @@
     <meta name="keywords" content="charity,donatio, giving, muslim aid, uk aid, pure water, ">
     </head>
 
-
+    @if($section_status->slider == 1)
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         {{-- <div class="carousel-indicators">
             @foreach($sliders as $index => $slider)
@@ -130,7 +130,7 @@
         </div>
         
     </div>
-
+    @endif
 
 
 <section class="slider d-none">
@@ -184,9 +184,8 @@
 
 
 
-
 {{-- gallery here  --}}
-@if ($galleries->count() > 0)
+@if ($galleries->count() && $section_status->our_activities == 1)
     
 <section class="about spacer">
     <div class="">
@@ -250,7 +249,7 @@
 @endif
 
 
-
+@if($section_status->about_us == 1)
 <section class="about spacer">
     <div class="container">
         <div class="row">
@@ -271,7 +270,7 @@
         </div>
     </div>
 </section>
-
+@endif
 
 
 <section class="blog-section spacer" style="display: none">

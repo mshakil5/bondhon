@@ -89,6 +89,7 @@
                 <li><a href="{{route('admin.whychooseus')}}" class="nav-link {{ (request()->is('admin/why-choose-us*')) ? 'current' : '' }}">Why Choose Us</a></li>
                 <li><a href="{{route('admin.master')}}" class="nav-link {{ (request()->is('admin/all-data*')) ? 'current' : '' }}">All Data</a></li>
                 <li><a href="{{route('admin.sliders')}}" class="nav-link {{ (request()->is('admin/sliders*')) ? 'current' : '' }}">Slider</a></li>
+                <li><a href="{{route('sectionstatus')}}" class="nav-link {{ (request()->is('admin/section-status*')) ? 'current' : '' }}">Section Status</a></li>
                 <li><a href="{{route('admin.contact-mail')}}" class="nav-link {{ (request()->is('admin/contact-mail*')) ? 'current' : '' }}">Contact Mail</a></li>
                 
                 <li><a href="{{route('admin.emailcontent')}}" class="nav-link {{ (request()->is('admin/email-content*')) ? 'current' : '' }}">Email Content</a></li>
@@ -107,16 +108,8 @@
                 
                 <li><a href="{{route('admin.contributor')}}" class="nav-link {{ (request()->is('admin/contributor*')) ? 'current' : '' }}">Contributors</a></li>
 
-                {{-- <li><a href="order-voucher-books.html">Order voucher books</a></li>
-                <li><a href="tevini-card.html">Tevini card</a></li>
-                <li><a href="view-transactions.html">View transactions</a></li>
-                <li><a href="standing-orders.html">Standing orders</a></li>
-                <li><a href="maaser-calculator.html">Maaser calculator</a></li>
-                <li><a href="contact.html">Contact</a></li> --}}
             </ul>
             <div class="bottom-part">
-                {{-- <a href="#" class="btn-theme bg-secondary">Order voucher books</a>
-                <a href="#" class="btn-theme bg-primary">Make a donation</a> --}}
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="mt-2 d-flex justify-content-center txt-theme fw-bold align-items-center">
                     <iconify-icon icon="humbleicons:logout"></iconify-icon>
                     &nbsp;Log out
