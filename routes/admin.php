@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\DonationTypeController;
 use App\Http\Controllers\Admin\VolunteerController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\SectionController;
+use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\BlogController;
 
 
 
@@ -163,6 +165,22 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/contributor/{id}/edit', [ContributorController::class, 'edit']);
     Route::post('/contributor-update', [ContributorController::class, 'update']);
     Route::get('/contributor/{id}', [ContributorController::class, 'delete']);
+
+    // Blog Categories Routes
+    Route::get('/blog-categories', [BlogCategoryController::class, 'index'])->name('allBlogCategories');
+    Route::post('/blog-categories', [BlogCategoryController::class, 'store']);
+    Route::get('/blog-categories/{id}/edit', [BlogCategoryController::class, 'edit']);
+    Route::post('/blog-categories-update', [BlogCategoryController::class, 'update']);
+    Route::get('/blog-categories/{id}', [BlogCategoryController::class, 'delete']);
+    Route::post('/blog-categories/{id}/status', [BlogCategoryController::class, 'updateStatus'])->name('blogCategories.updateStatus');
+
+    Route::get('/blogs', [BlogController::class, 'index'])->name('allBlogs');
+    Route::post('/blogs', [BlogController::class, 'store']);
+    Route::get('/blogs/{id}/edit', [BlogController::class, 'edit']);
+    Route::post('/blogs-update', [BlogController::class, 'update']);
+    Route::get('/blogs/{id}', [BlogController::class, 'delete']);
+    Route::post('/blogs/{id}/status', [BlogController::class, 'updateStatus'])->name('blogs.updateStatus');
+    
 
 });
 //admin part end

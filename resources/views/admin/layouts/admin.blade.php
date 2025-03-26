@@ -23,6 +23,7 @@
     <!-- Summer note-->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -107,6 +108,8 @@
                 
                 <li><a href="{{route('admin.contributor')}}" class="nav-link {{ (request()->is('admin/contributor*')) ? 'current' : '' }}">Contributors</a></li>
 
+                <li><a href="{{route('allBlogCategories')}}" class="nav-link {{ (request()->is('admin/blog-categories*')) ? 'current' : '' }}">Blog Category</a></li>
+
                 <li><a href="{{route('sectionstatus')}}" class="nav-link {{ (request()->is('admin/section-status*')) ? 'current' : '' }}">Section Status</a></li>
 
             </ul>
@@ -160,6 +163,7 @@
     <script src="{{ asset('assets/admin/js/bootstrap-5.bundle.min.js')}}"></script>
     <script src="{{ asset('assets/admin/js/iconify.min.js')}}"></script>
     <script src="{{ asset('assets/admin/js/app.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     {{-- <script>
         for (var i = 0; i < document.links.length; i++) {
             if (document.links[i].href === document.URL) {
@@ -212,6 +216,25 @@
 
                     }
             });
+    }
+
+    function showSuccess(message, title = 'Success') {
+        toastr.success(message, title, {
+            positionClass: 'toast-top-right',
+            timeOut: 3000
+        });
+    }
+
+    function showError(message, title = 'Error') {
+        toastr.error(message, title, {
+            positionClass: 'toast-top-right',
+            timeOut: 5000
+        });
+    }
+    function reloadPage(timeout) {
+        window.setTimeout(function() {
+            location.reload();
+        }, timeout);
     }
     </script>
 
