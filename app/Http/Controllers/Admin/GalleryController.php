@@ -155,4 +155,13 @@ class GalleryController extends Controller
         $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Active Successfully.</b></div>";
         return response()->json(['status'=> 300,'message'=>$message]);
     }
+
+    public function galleryStatus(Request $request)
+    {
+        $data = Gallery::find($request->id);
+        $data->status = $request->status;
+        $data->save();  
+        $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Active Successfully.</b></div>";
+        return response()->json(['status'=> 300,'message'=>$message]);
+    }
 }

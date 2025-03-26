@@ -141,6 +141,8 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::post('/gallery-update', [GalleryController::class, 'update']);
     Route::get('/gallery/{id}', [GalleryController::class, 'delete']);
 
+    Route::get('/gallery-status', [GalleryController::class, 'galleryStatus']);
+
     Route::get('/volunteer', [VolunteerController::class, 'index'])->name('admin.volunteer');
     Route::post('/volunteer', [VolunteerController::class, 'store']);
     Route::get('/volunteer/{id}/edit', [VolunteerController::class, 'edit']);

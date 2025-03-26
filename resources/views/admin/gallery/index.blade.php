@@ -89,6 +89,7 @@
                                     <th style="text-align: center">Title</th>
                                     <th style="text-align: center">Description</th>
                                     <th style="text-align: center">Image</th>
+                                    <th style="text-align: center">Status</th>
                                     <th style="text-align: center">Action</th>
                                 </tr>
                             </thead>
@@ -102,6 +103,11 @@
                                             @if ($data->image)
                                             <img src="{{asset('images/gallery/'.$data->image)}}" height="120px" width="220px" alt="">
                                             @endif
+                                        </td>
+                                        <td style="text-align: center">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input fundraiserstatus" type="checkbox" role="switch"  data-id="{{$data->id}}" id="fundraiserstatus" @if ($data->status == 1) checked @endif >
+                                            </div>
                                         </td>
 
                                         <td style="text-align: center">
@@ -128,6 +134,32 @@
 
 @endsection
 @section('script')
+
+<script>
+  $(function() {
+    $('.fundraiserstatus').change(function() {
+      var url = "{{URL::to('/admin/gallery-status')}}";
+        var status = $(this).prop('checked') == true ? 1 : 0;
+        var id = $(this).data('id');
+         console.log(id);
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: url,
+            data: {'status': status, 'id': id},
+            success: function(d){
+                pagetop();
+                alert('Status Change Successfully');
+                window.setTimeout(function(){location.reload()},2000)
+
+              },
+              error: function (d) {
+                  console.log(d);
+              }
+        });
+    })
+  })
+</script>
 
 <script src="//cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
     <script>

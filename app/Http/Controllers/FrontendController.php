@@ -26,7 +26,7 @@ class FrontendController extends Controller
 {
     public function index()
     {  
-        $galleries = Gallery::latest()->get();
+        $galleries = Gallery::where('status', 1)->latest()->get();
 
         $categories = Category::has('gallery')->latest()->get();
 
