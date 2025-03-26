@@ -639,10 +639,10 @@ p {
   }
 }
 .partners-section {
-  background: #f4f2f1;
+  /* background: #f4f2f1; */
 }
 .partners-section .slick-slider {
-  height: 90px;
+  height: 120px;
 }
 
 .slick-dots li.slick-active button {

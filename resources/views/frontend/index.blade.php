@@ -3,8 +3,6 @@
 @section('content')
 
 <style>
-
-    
     .custom-list {
       padding: 0;
       list-style: none;
@@ -84,85 +82,27 @@
         max-height:75vh;
         overflow-y:scroll;
     }
-
-
-
 </style>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bondhon - Uniting for a better communitry</title>
-    <link rel="stylesheet" href="./css/bootstrap@5.3.0_dist_css_bootstrap.min.css">
-    <!-- <link rel="stylesheet" type="text/css" href="./css/slick.css" />
-    <link rel="stylesheet" type="text/css" href="./css/slick-theme.css" /> -->
-    <link rel="stylesheet" type="text/css" href="./css/popup.css" />
-    <link rel="stylesheet" href="./css/app.css">
-    
-    
-    
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="Welcome to bondhon- A popular charity in the UK - We will work alongside underprivileged people, supporters, companies, including trusts and institutions to build a better community.">
-    <meta name="author" content="">
-    
-    <meta name="keywords" content="charity,donatio, giving, muslim aid, uk aid, pure water, ">
-    </head>
-
-    @if($section_status->slider == 1)
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-        {{-- <div class="carousel-indicators">
-            @foreach($sliders as $index => $slider)
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
-            @endforeach
-        </div> --}}
-        <div class="carousel-inner">
-            @foreach (\App\Models\Slider::where('status',1)->get() as $index => $slider)
-                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                    <img src="{{ asset('images/slider/' . $slider->photo) }}" class="d-block w-100" alt="{{ $slider->photo }}">
-                    <div class="carousel-caption text-white d-none d-md-block">
-                        @if($slider->title)
-                        <h2 class="text-white">{{ $slider->title }}</h2>
-                        @endif
-                    </div>
-                </div>
-            @endforeach
-        </div>
-        
-    </div>
-    @endif
-
-
-<section class="slider d-none">
-    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-inner">
-
-          @foreach (\App\Models\Slider::where('status',1)->get() as $key => $slider)
-            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                <img src="{{ asset('images/slider/'.$slider->photo) }}" class="d-block w-100" alt="slider photo missing">
-                <div class="carousel-text container">
-                    <h1 class="main-title">{{$slider->title}}</h1>
+@if($section_status->slider == 1)
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        @foreach (\App\Models\Slider::where('status', 1)->get() as $index => $slider)
+            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                <img src="{{ asset('images/slider/' . $slider->photo) }}" class="d-block w-100" alt="{{ $slider->photo }}">
+                <div class="carousel-caption text-white d-none d-md-block">
+                    @if($slider->title)
+                    <h2 class="text-white">{{ $slider->title }}</h2>
+                    @endif
                 </div>
             </div>
-          @endforeach
-            
-            
-
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        @endforeach
     </div>
-</section>
+</div>
+@endif
 
-<section class="join-section d-none">
+@if($section_status->donation == 1)
+<section class="join-section">
       <section class="join py-5 mt-5">
           <div class="container">
               <div class="row align-items-center">
@@ -180,24 +120,17 @@
           </div>
       </section>
 </section>
+@endif
 
-
-
-
-{{-- gallery here  --}}
 @if ($galleries->count() && $section_status->our_activities == 1)
-    
 <section class="about spacer">
     <div class="">
-
         <div class="photo-gallery">
             <div class="row justify-content-center">
                 <div class="col-md-8 mx-auto mb-3">
                     <h2 class="title-global text-center">
                         Our Activities
                     </h2>
-
-
                 </div>
             </div>
     
@@ -206,7 +139,6 @@
                     <div class="row ">
                         <div class="col-lg-8 shadow-sm border rounded-0 bg-light height-adjust">
                             <div class="row pt-5 px-4 photos popup-gallery">
-
                                 @foreach ($galleries as $gallery)
                                     <div class="col-sm-6 col-md-4 col-lg-4 item" data-category="{{ $gallery->category->name }}">
                                         <a href="{{ asset('images/gallery/' . $gallery->image) }}" data-lightbox="photos">
@@ -214,8 +146,6 @@
                                         </a>
                                     </div>
                                 @endforeach
-
-
                             </div>
                         </div>
                         <div class="col-lg-4 shadow-sm border rounded-0 bg-light">
@@ -224,30 +154,19 @@
 
                                     <li class="d-flex justify-content-between align-items-center pe-2 rounded-2 "><span class="category active"  data-category="all">All</span></li>
 
-                                    @foreach ($categories as $category)
-                                        
+                                    @foreach ($categories as $category)                                 
                                     <li class="d-flex justify-content-between align-items-center pe-2 rounded-2"><span class="category" data-category="{{ $category->name }}">{{ $category->name }}</span></li>
-
-                                    @endforeach
-                                    
-                                    
-
-
+                                    @endforeach                   
                                 </ol>
                             </div>
                         </div>
                     </div>
                 </div>
-    
-    
             </div>
-        </div>
-        
-        
+        </div>   
     </div>
 </section>
 @endif
-
 
 @if($section_status->about_us == 1)
 <section class="about spacer">
@@ -255,16 +174,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="about-right mt-2">
-                    {{-- <h6 class="txt-primary fs-4 d-flex align-items-center">
-                        <iconify-icon icon="ph:heart-fill"></iconify-icon>
-                        About EnaCare
-                    </h6> --}}
-                    
                     <h2 class="title-global text-center">{{\App\Models\Master::where('name','homepage2ndsection')->first()->title}}</h2>
-                    
-
-                    {!! \App\Models\Master::where('name','homepage2ndsection')->first()->description !!}
-                    
+                    {!! \App\Models\Master::where('name','homepage2ndsection')->first()->description !!}           
                 </div>
             </div>
         </div>
@@ -272,8 +183,8 @@
 </section>
 @endif
 
-
-<section class="blog-section spacer" style="display: none">
+@if($section_status->blog == 1)
+<section class="blog-section spacer">
     <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-md-8 mx-auto ">
@@ -363,10 +274,10 @@
         </div>
     </div>
 </section>
+@endif
 
-
-
-<section class="py-5 partners-section" style="display: none">
+@if($section_status->partners == 1)
+<section class="py-5 partners-section">
     <div class="container">
         <div class="partners ">
             <div class="mx-1 d-flex justify-content-center align-items-center">
@@ -390,20 +301,17 @@
             <div class="mx-1 d-flex justify-content-center align-items-center">
                 <img src="{{ asset('assets/images/partners/4.png')}}" class="img-fluid  wow bounce " data-wow-delay="0.6s" alt="">
             </div>
-
-
         </div>
     </div>
 </section>
+@endif
 
-    
 @endsection
 
 @section('script')
 
 <script>
     $(document).ready(function() {
-
         $('.category').click(function() {
             
             $('.category').removeClass('active');
@@ -419,7 +327,6 @@
         });
     });
 </script>
-
 
 <script>
     jQuery(document).ready(function () {
@@ -449,8 +356,5 @@
 
     });
 </script>
-
-
-
 
 @endsection

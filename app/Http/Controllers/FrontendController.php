@@ -25,10 +25,11 @@ use App\Models\SectionStatus;
 class FrontendController extends Controller
 {
     public function index()
-    {
-        
-        $galleries = Gallery::all();
-        $categories = Category::all();
+    {  
+        $galleries = Gallery::latest()->get();
+
+        $categories = Category::has('gallery')->latest()->get();
+
         $section_status = SectionStatus::first();
         return view('frontend.index', compact('galleries', 'categories', 'section_status'));
     }

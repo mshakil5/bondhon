@@ -31,6 +31,15 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Donation</td>
+                    <td>
+                        <select name="donation" id="donation" class="form-control">
+                            <option value="1" {{ $status->donation ? 'selected' : '' }}>On</option>
+                            <option value="0" {{ !$status->donation ? 'selected' : '' }}>Off</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
                     <td>Our Activities</td>
                     <td>
                         <select name="our_activities" id="our_activities" class="form-control">
@@ -45,6 +54,24 @@
                         <select name="about_us" id="about_us" class="form-control">
                             <option value="1" {{ $status->about_us ? 'selected' : '' }}>On</option>
                             <option value="0" {{ !$status->about_us ? 'selected' : '' }}>Off</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Blog</td>
+                    <td>
+                        <select name="blog" id="blog" class="form-control">
+                            <option value="1" {{ $status->blog ? 'selected' : '' }}>On</option>
+                            <option value="0" {{ !$status->blog ? 'selected' : '' }}>Off</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Partners</td>
+                    <td>
+                        <select name="partners" id="partners" class="form-control">
+                            <option value="1" {{ $status->partners ? 'selected' : '' }}>On</option>
+                            <option value="0" {{ !$status->partners ? 'selected' : '' }}>Off</option>
                         </select>
                     </td>
                 </tr>

@@ -16,8 +16,11 @@ return new class extends Migration
         Schema::create('section_statuses', function (Blueprint $table) {
             $table->id();
             $table->boolean('slider')->default(1); 
+            $table->boolean('donation')->default(1); 
             $table->boolean('our_activities')->default(1); 
             $table->boolean('about_us')->default(1); 
+            $table->boolean('blog')->default(1); 
+            $table->boolean('partners')->default(1); 
             $table->timestamps();
         });
     }

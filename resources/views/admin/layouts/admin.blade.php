@@ -89,7 +89,6 @@
                 <li><a href="{{route('admin.whychooseus')}}" class="nav-link {{ (request()->is('admin/why-choose-us*')) ? 'current' : '' }}">Why Choose Us</a></li>
                 <li><a href="{{route('admin.master')}}" class="nav-link {{ (request()->is('admin/all-data*')) ? 'current' : '' }}">All Data</a></li>
                 <li><a href="{{route('admin.sliders')}}" class="nav-link {{ (request()->is('admin/sliders*')) ? 'current' : '' }}">Slider</a></li>
-                <li><a href="{{route('sectionstatus')}}" class="nav-link {{ (request()->is('admin/section-status*')) ? 'current' : '' }}">Section Status</a></li>
                 <li><a href="{{route('admin.contact-mail')}}" class="nav-link {{ (request()->is('admin/contact-mail*')) ? 'current' : '' }}">Contact Mail</a></li>
                 
                 <li><a href="{{route('admin.emailcontent')}}" class="nav-link {{ (request()->is('admin/email-content*')) ? 'current' : '' }}">Email Content</a></li>
@@ -107,6 +106,8 @@
 
                 
                 <li><a href="{{route('admin.contributor')}}" class="nav-link {{ (request()->is('admin/contributor*')) ? 'current' : '' }}">Contributors</a></li>
+
+                <li><a href="{{route('sectionstatus')}}" class="nav-link {{ (request()->is('admin/section-status*')) ? 'current' : '' }}">Section Status</a></li>
 
             </ul>
             <div class="bottom-part">
