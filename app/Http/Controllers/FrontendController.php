@@ -21,17 +21,17 @@ use Illuminate\Support\Facades\URL;
 use DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\SectionStatus;
+use App\Models\Blog;
 
 class FrontendController extends Controller
 {
     public function index()
     {  
         $galleries = Gallery::where('status', 1)->latest()->get();
-
         $categories = Category::has('gallery')->latest()->get();
-
+        $blogs = Blog::where('status', 1)->with('category')->select('title', 'created_at', 'slug', 'blog_category_id', 'image', 'description')->latest()->get();
         $section_status = SectionStatus::first();
-        return view('frontend.index', compact('galleries', 'categories', 'section_status'));
+        return view('frontend.index', compact('galleries', 'categories', 'section_status', 'blogs'));
     }
 
     public function about()
@@ -390,5 +390,11 @@ class FrontendController extends Controller
             return view('frontend.volunteerform')
             ->with('error','Registration Fail.');
         }
+    }
+
+    public function blogDetails($slug)
+    {
+        $blog = Blog::where('slug', $slug)->firstOrFail();
+        return view('frontend.blog_details', compact('blog'));
     }
 }
