@@ -22,6 +22,7 @@ use DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\SectionStatus;
 use App\Models\Blog;
+use App\Models\BlogComment;
 
 class FrontendController extends Controller
 {
@@ -394,7 +395,28 @@ class FrontendController extends Controller
 
     public function blogDetails($slug)
     {
-        $blog = Blog::where('slug', $slug)->firstOrFail();
+        $blog = Blog::with(['comments' => function ($query) {
+            $query->where('status', 1);
+        }])->where('slug', $slug)->firstOrFail();
         return view('frontend.blog_details', compact('blog'));
+    }
+
+    public function storeComment(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'comment' => 'required|string',
+        ]);
+
+        BlogComment::create([
+            'blog_id' => $id,
+            'name' => $request->name,
+            'email' => $request->email,
+            'comment' => $request->comment,
+            'status' => 0,
+        ]);
+
+        return back()->with('success', 'Your comment has been submitted and is awaiting approval.');
     }
 }

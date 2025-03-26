@@ -62,6 +62,7 @@ Route::get('/trustees', [FrontendController::class, 'trustees'])->name('frontend
 Route::get('/directors', [FrontendController::class, 'directors'])->name('frontend.directors');
 Route::get('/transparency', [FrontendController::class, 'news'])->name('frontend.news');
 Route::get('/blog/{slug}', [FrontendController::class, 'blogDetails'])->name('blog.show');
+Route::post('/blog/{id}/comment', [FrontendController::class, 'storeComment'])->name('blog.comment.store');
 
 Route::get('/giftaid', [FrontendController::class, 'giftaid'])->name('frontend.giftaid');
 

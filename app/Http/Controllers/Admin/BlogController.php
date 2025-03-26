@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use App\Models\BlogComment;
 
 class BlogController extends Controller
 {
@@ -114,4 +115,23 @@ class BlogController extends Controller
 
         return response()->json(['status' => 200, 'message' => 'Status updated successfully.']);
     }
+
+    public function viewComments($id)
+    {
+        $comments = BlogComment::where('blog_id', $id)->get();
+        return view('admin.blog.comments', compact('comments'));
+    }
+
+    public function updateCommentStatus(Request $request, $id)
+    {
+        $comment = BlogComment::findOrFail($id);
+        $comment->status = $request->status;
+        $comment->save();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Comment status updated successfully.'
+        ]);
+    }
+
 }

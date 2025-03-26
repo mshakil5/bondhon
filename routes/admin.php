@@ -180,7 +180,10 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::post('/blogs-update', [BlogController::class, 'update']);
     Route::get('/blogs/{id}', [BlogController::class, 'delete']);
     Route::post('/blogs/{id}/status', [BlogController::class, 'updateStatus'])->name('blogs.updateStatus');
-    
+
+    Route::get('/blog/{id}/comments', [BlogController::class, 'viewComments'])->name('blog.comments');
+
+    Route::post('/comment-status/{id}/status', [BlogController::class, 'updateCommentStatus'])->name('comment.updateStatus');
 
 });
 //admin part end

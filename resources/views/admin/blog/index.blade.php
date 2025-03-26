@@ -100,6 +100,11 @@
                                     <td>
                                         <a id="EditBtn" rid="{{ $blog->id }}"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>
                                         <a id="deleteBtn" rid="{{ $blog->id }}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a>
+                                        @if ($blog->comments()->count() > 0) 
+                                            <a href="{{ route('blog.comments', $blog->id) }}" title="View Comments">
+                                                <i class="fa fa-comments" style="color: green;font-size:16px;"></i>
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach
