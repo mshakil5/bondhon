@@ -59,6 +59,7 @@
 </div>
 
 <button id="newBtn" type="button" class="btn-theme bg-primary">Add New</button>
+<div class="stsermsg"></div>
     <hr>
     <div id="contentContainer">
         <div class="row">
@@ -73,6 +74,7 @@
                                 <tr>
                                     <th style="text-align: center">ID</th>
                                     <th style="text-align: center">Name</th>
+                                    <th style="text-align: center">Status</th>
                                     <th style="text-align: center">Action</th>
                                 </tr>
                             </thead>
@@ -81,6 +83,11 @@
                                     <tr>
                                         <td style="text-align: center">{{ $key + 1 }}</td>
                                         <td style="text-align: center">{{$data->name}}</td>
+                                        <td style="text-align: center">
+                                          <div class="form-check form-switch">
+                                              <input class="form-check-input fundraiserstatus" type="checkbox" role="switch"  data-id="{{$data->id}}" id="fundraiserstatus" @if ($data->status == 1) checked @endif >
+                                          </div>
+                                      </td>
                                         <td style="text-align: center">
 
                                         <a id="EditBtn" rid="{{$data->id}}"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>
@@ -103,6 +110,32 @@
 
 @endsection
 @section('script')
+
+<script>
+  $(function() {
+    $('.fundraiserstatus').change(function() {
+      var url = "{{URL::to('/admin/category-status')}}";
+        var status = $(this).prop('checked') == true ? 1 : 0;
+        var id = $(this).data('id');
+         console.log(id);
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: url,
+            data: {'status': status, 'id': id},
+            success: function(d){
+                pagetop();
+                alert('Status Change Successfully');
+                window.setTimeout(function(){location.reload()},2000)
+
+              },
+              error: function (d) {
+                  console.log(d);
+              }
+        });
+    })
+  })
+</script>
 
 <script src="//cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
     <script>

@@ -133,6 +133,7 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::post('/category-update', [GalleryController::class, 'categoryupdate']);
     Route::get('/category/{id}', [GalleryController::class, 'categorydelete']);
 
+    Route::get('/category-status', [GalleryController::class, 'categoryStatus']);
     
     Route::get('/gallery', [GalleryController::class, 'index'])->name('admin.gallery');
     Route::post('/gallery', [GalleryController::class, 'store']);

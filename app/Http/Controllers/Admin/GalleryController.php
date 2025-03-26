@@ -13,7 +13,7 @@ class GalleryController extends Controller
 {
     public function index()
     {
-        $cats = Category::orderby('id','DESC')->get();
+        $cats = Category::where('status', 1)->orderby('id','DESC')->get();
         $data = Gallery::orderby('id','DESC')->get();
         return view('admin.gallery.index',compact('data','cats'));
     }
@@ -145,5 +145,14 @@ class GalleryController extends Controller
         else{
             return response()->json(['success'=>false,'message'=>'Update Failed']);
         }
+    }
+
+    public function categoryStatus(Request $request)
+    {
+        $data = Category::find($request->id);
+        $data->status = $request->status;
+        $data->save();  
+        $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Active Successfully.</b></div>";
+        return response()->json(['status'=> 300,'message'=>$message]);
     }
 }
