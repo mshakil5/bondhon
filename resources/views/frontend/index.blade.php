@@ -198,12 +198,12 @@
                 </h2>
             </div>
         </div>
-        <div class="row">
+        <div class="row blog-row">
             <div class="col-md-4  wow fadeInUp " data-wow-delay="0.6s">
                 <div class="blog">
                     <div class="photo mb-3">
                         <a href="">
-                            <img src="{{ asset('assets/images/posts/4.jpg')}}" alt="">
+                            <img src="{{ asset('assets/images/posts/1.jpg')}}" alt="">
                         </a>
                     </div>
                     <div class="blog-content">
@@ -227,7 +227,7 @@
                 <div class="blog">
                     <div class="photo mb-3">
                         <a href="">
-                            <img src="{{ asset('assets/images/posts/4.jpg')}}" alt="">
+                            <img src="{{ asset('assets/images/posts/1.jpg')}}" alt="">
                         </a>
                     </div>
                     <div class="blog-content">
@@ -251,7 +251,31 @@
                 <div class="blog">
                     <div class="photo mb-3">
                         <a href="">
-                            <img src="{{ asset('assets/images/posts/5.jpg')}}" alt="">
+                            <img src="{{ asset('assets/images/posts/1.jpg')}}" alt="">
+                        </a>
+                    </div>
+                    <div class="blog-content">
+                        <div class="tag my-2">
+                            <a href="">
+                                <iconify-icon icon="bi:folder" class="me-1 fs-6 text-white"></iconify-icon>
+                                tagname
+                            </a>
+                        </div>
+                        <a href="" class="fs-3 link-title d-block my-3">
+                            Experts Global Digital During Developments COVID-19
+                        </a>
+                        <p>
+                            Sed perspiciatis unde omnis iste natus error sit atem accntium doloremque laudantium
+                        </p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4  wow fadeInUp " data-wow-delay="0.6s">
+                <div class="blog">
+                    <div class="photo mb-3">
+                        <a href="">
+                            <img src="{{ asset('assets/images/posts/1.jpg')}}" alt="">
                         </a>
                     </div>
                     <div class="blog-content">
