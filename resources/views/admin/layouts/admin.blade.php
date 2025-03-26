@@ -110,6 +110,8 @@
 
                 <li><a href="{{route('allBlogCategories')}}" class="nav-link {{ (request()->is('admin/blog-categories*')) ? 'current' : '' }}">Blog Category</a></li>
 
+                <li><a href="{{route('allBlogs')}}" class="nav-link {{ (request()->is('admin/blogs*')) ? 'current' : '' }}">Blogs</a></li>
+
                 <li><a href="{{route('sectionstatus')}}" class="nav-link {{ (request()->is('admin/section-status*')) ? 'current' : '' }}">Section Status</a></li>
 
             </ul>
