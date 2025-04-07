@@ -126,7 +126,6 @@
 @endsection
 @section('script')
 
-<script src="//cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
     <script>
         $(document).ready(function () {
             $("#addThisFormContainer").hide();
@@ -200,6 +199,7 @@
                     var form_data = new FormData();
                     form_data.append('image', file_data);
                     form_data.append("title", $("#title").val());
+                    form_data.append("name", $("#name").val());
                     form_data.append("description", $("#description").val());
                     form_data.append('_method', 'put');
                     $.ajax({

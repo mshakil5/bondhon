@@ -166,6 +166,12 @@
     <script src="{{ asset('assets/admin/js/iconify.min.js')}}"></script>
     <script src="{{ asset('assets/admin/js/app.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+    <script>
+      CKEDITOR.editorConfig = function(config) {
+          config.versionCheck = false;
+      };
+    </script>
     {{-- <script>
         for (var i = 0; i < document.links.length; i++) {
             if (document.links[i].href === document.URL) {
