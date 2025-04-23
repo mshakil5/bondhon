@@ -196,7 +196,7 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/video-blogs/{id}/edit', [VideoBlogController::class, 'edit']);
     Route::post('/video-blogs-update', [VideoBlogController::class, 'update']);
     Route::get('/video-blogs/{id}', [VideoBlogController::class, 'delete']);
-    Route::post('/video-blogs/{id}/status', [BlogCoVideoBlogControllerntroller::class, 'updateStatus'])->name('blogs.updateStatus');
+    Route::post('/video-blogs/{id}/status', [VideoBlogController::class, 'updateStatus'])->name('blogs.updateStatus');
 
     Route::get('/blog/{id}/comments', [BlogController::class, 'viewComments'])->name('blog.comments');
 

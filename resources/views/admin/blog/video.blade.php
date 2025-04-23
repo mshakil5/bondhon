@@ -38,6 +38,10 @@
                                 <input type="text" class="form-control" id="title" name="title" placeholder="Enter blog title">
                             </div>
                             <div class="form-group">
+                                <label>Upload Thumbnail (max 5MB)</label>
+                                <input type="file" name="thumbnail" id="thumbnailUpload" accept="image/*">
+                            </div>
+                            <div class="form-group">
                                 <label>Upload Video (max 40MB)</label>
                                 <input type="file" name="video" id="videoUpload" accept="video/*">
                             </div>
@@ -80,10 +84,13 @@
                                     <td>{{ $blog->title }}</td>
                                     <td>{{ $blog->category->name }}</td>
                                     <td>
-                                        <button onclick="this.outerHTML='<video src=\'{{ asset($blog->video) }}\' controls autoplay style=\'max-width: 300px; width: 100%; height: auto;\'></video>'">
-                                            ▶️ Play Video
-                                        </button>
-                                    </td>                                    
+                                        <img 
+                                            src="{{ $blog->thumbnail ? asset($blog->thumbnail) : 'https://ionicframework.com/docs/img/demos/thumbnail.svg' }}" 
+                                            alt="Thumbnail"
+                                            style="max-width: 300px; width: 100%; height: auto; cursor: pointer;"
+                                            onclick="this.outerHTML='<video src=\'{{ asset($blog->video) }}\' controls autoplay style=\'max-width: 300px; width: 100%; height: auto;\'></video>'"
+                                        >
+                                    </td>                                                                        
                                   
                                     <td>
                                         <div class="custom-control custom-switch">
@@ -113,6 +120,7 @@
 <!-- Styles -->
 <link href="https://unpkg.com/filepond/dist/filepond.min.css" rel="stylesheet">
 <link href="https://unpkg.com/filepond-plugin-media-preview/dist/filepond-plugin-media-preview.min.css" rel="stylesheet">
+<link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css" rel="stylesheet" />
 @endsection
 
 @section('script')
@@ -120,11 +128,13 @@
 <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js"></script>
 <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js"></script>
 <script src="https://unpkg.com/filepond-plugin-media-preview/dist/filepond-plugin-media-preview.min.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
 <script>
   FilePond.registerPlugin(
       FilePondPluginFileValidateSize,
       FilePondPluginFileValidateType,
-      FilePondPluginMediaPreview
+      FilePondPluginMediaPreview,
+      FilePondPluginImagePreview
   );
 
   FilePond.create(document.querySelector('#videoUpload'), {
@@ -134,6 +144,15 @@
       allowReorder: false,
       allowProcess: true,
   });
+
+  FilePond.create(document.querySelector('#thumbnailUpload'), {
+      acceptedFileTypes: ['image/*'],
+      maxFileSize: '5MB',
+      allowMultiple: false,
+      allowReorder: false,
+      allowProcess: true,
+  });
+
 </script>
 
 <script>
@@ -177,6 +196,11 @@
                     return;
                 }
                 form_data.append('video', pondFiles[0].file);
+
+                var thumbFiles = FilePond.find(document.querySelector('#thumbnailUpload')).getFiles();
+                if (thumbFiles.length > 0) {
+                    form_data.append('thumbnail', thumbFiles[0].file);
+                }
 
                 $("#addBtn").prop('disabled', true).html('Uploading...');
 
@@ -222,6 +246,13 @@
                     return;
                 }
                 form_data.append('video', pondFiles[0].file);
+
+                var thumbFiles = FilePond.find(document.querySelector('#thumbnailUpload')).getFiles();
+                
+                if (thumbFiles.length > 0) {
+                    form_data.append('thumbnail', thumbFiles[0].file);
+                }
+
                 form_data.append("codeid", $("#codeid").val());
 
                 for (var pair of form_data.entries()) {
@@ -290,23 +321,35 @@
             $("#addThisFormContainer").show(300);
             $("#newBtn").hide(100);
 
-            FilePond.find(document.querySelector('#videoUpload')).removeFiles();
+            const videoPond = FilePond.find(document.querySelector('#videoUpload'));
+            const thumbPond = FilePond.find(document.querySelector('#thumbnailUpload'));
+
+            if (videoPond) videoPond.removeFiles();
+            if (thumbPond) thumbPond.removeFiles();
 
             if (data.video) {
-              const videoUrl = data.video;
-              const fileName = videoUrl.split('/').pop();
+                const videoUrl = data.video;
+                const videoName = videoUrl.split('/').pop();
 
-              fetch(videoUrl)
-                  .then(res => res.blob())
-                  .then(blob => {
-                      const file = new File([blob], fileName, { type: blob.type });
-                      FilePond.find(document.querySelector('#videoUpload')).addFile(file).then(fileItem => {
-                          console.log("File loaded:", fileItem);
-                      }).catch(error => {
-                          console.error("Error loading file:", error);
-                      });
-                  });
-          }
+                fetch(videoUrl)
+                    .then(res => res.blob())
+                    .then(blob => {
+                        const videoFile = new File([blob], videoName, { type: blob.type });
+                        videoPond.addFile(videoFile);
+                    });
+            }
+
+            if (data.thumbnail) {
+                const thumbUrl = data.thumbnail;
+                const thumbName = thumbUrl.split('/').pop();
+
+                fetch(thumbUrl)
+                    .then(res => res.blob())
+                    .then(blob => {
+                        const thumbFile = new File([blob], thumbName, { type: blob.type });
+                        thumbPond.addFile(thumbFile);
+                    });
+            }
 
         }
 

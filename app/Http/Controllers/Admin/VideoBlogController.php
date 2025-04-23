@@ -25,6 +25,7 @@ class VideoBlogController extends Controller
           'blog_category_id' => 'required|exists:blog_categories,id',
           'title' => 'nullable|string|max:255',
           'description' => 'nullable|string',
+          'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
           'video' => 'required|file|mimetypes:video/mp4,video/avi,video/mpeg,video/quicktime|max:40960'
       ]);
 
@@ -38,6 +39,13 @@ class VideoBlogController extends Controller
       $blog->slug = Str::slug($request->title);
       $blog->type = 2;
       $blog->created_by = auth()->id();
+
+      if ($request->hasFile('thumbnail')) {
+          $thumbnail = $request->file('thumbnail');
+          $thumbnailName = uniqid() . '.' . $thumbnail->getClientOriginalExtension();
+          $thumbnail->move(public_path('images/video-blogs'), $thumbnailName);
+          $blog->thumbnail = '/images/video-blogs/' . $thumbnailName;
+      }
 
       if ($request->hasFile('video')) {
           $video = $request->file('video');
@@ -61,7 +69,8 @@ class VideoBlogController extends Controller
       $validator = Validator::make($request->all(), [
           'blog_category_id' => 'required|exists:blog_categories,id',
           'title' => 'required|string|max:255',
-          'video' => 'nullable|file|mimetypes:video/mp4,video/avi,video/mpeg,video/quicktime|max:40960'
+          'video' => 'nullable|file|mimetypes:video/mp4,video/avi,video/mpeg,video/quicktime|max:40960',
+          'thumbnail' => 'nullable|image|max:5120'
       ]);
   
       if ($validator->fails()) {
@@ -85,6 +94,16 @@ class VideoBlogController extends Controller
           $videoName = uniqid() . '.' . $video->getClientOriginalExtension();
           $video->move(public_path('images/video-blogs'), $videoName);
           $blog->video = '/images/video-blogs/' . $videoName;
+      }
+
+      if ($request->hasFile('thumbnail')) {
+          if ($blog->thumbnail && file_exists(public_path($blog->thumbnail))) {
+              unlink(public_path($blog->thumbnail));
+          }
+          $thumbnail = $request->file('thumbnail');
+          $thumbnailName = uniqid() . '.' . $thumbnail->getClientOriginalExtension();
+          $thumbnail->move(public_path('images/video-blogs'), $thumbnailName);
+          $blog->thumbnail = '/images/video-blogs/' . $thumbnailName;
       }
 
       $blog->save();
