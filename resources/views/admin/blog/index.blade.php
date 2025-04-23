@@ -38,18 +38,18 @@
                                 <input type="text" class="form-control" id="title" name="title" placeholder="Enter blog title">
                             </div>
                             <div class="form-group">
-                                <label>Description <span class="text-danger">*</span></label>
-                                <textarea id="description" name="description" class="form-control summernote" placeholder="Enter blog description"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Image <span class="text-danger">*</span></label>
-                                <input type="file" class="form-control-file" id="image" name="image" accept="image/*">
-                                <img id="preview-image" src="#" alt="" style="max-width: 300px; width: 100%; height: auto; margin-top: 20px;">
+                                <label>Description</label>
+                                <textarea id="description" name="description" class="form-control" placeholder="Enter blog description"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Source</label>
                                 <input type="text" class="form-control" id="source" name="source" placeholder="Enter source">
                             </div>
+                            <div class="form-group">
+                                <label>Images <span class="text-danger">*</span></label>
+                                <input type="file" class="filepond" name="images[]" multiple accept="image/*">
+                                <div id="image-preview"></div>
+                            </div>                     
                         </form>
                     </div>
                     <div class="card-footer">
@@ -77,7 +77,7 @@
                                     <th>Sl</th>
                                     <th>Title</th>
                                     <th>Category</th>
-                                    <th>Image</th>
+                                    <th>Images</th>
                                     <th>Status</th>
                                     <th>Action</ th>
                                 </tr>
@@ -89,8 +89,10 @@
                                     <td>{{ $blog->title }}</td>
                                     <td>{{ $blog->category->name }}</td>
                                     <td>
-                                        <img src="{{ asset($blog->image) }}" alt="" style="max-width: 100px; width: 100%; height: auto;">
-                                    </td>
+                                      @foreach ($blog->images as $img)
+                                            <img src="{{ asset($img->image) }}" alt="" style="max-width: 80px; height: auto; margin-top: 5px;">
+                                        @endforeach
+                                    </td>         
                                     <td>
                                         <div class="custom-control custom-switch">
                                             <input type="checkbox" class="custom-control-input toggle-status" id="customSwitchStatus{{ $blog->id }}" data-id="{{ $blog->id }}" {{ $blog->status == 1 ? 'checked' : '' }}>
@@ -116,14 +118,26 @@
         </div>
     </div>
 </section>
-
+<link href="https://unpkg.com/filepond/dist/filepond.min.css" rel="stylesheet" />
+<link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css" rel="stylesheet" />
 @endsection
 
 @section('script')
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
+<script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+<script>
+  FilePond.registerPlugin(FilePondPluginImagePreview);
+
+  // Define globally
+  let pond = FilePond.create(document.querySelector('input[type="file"]'), {
+    allowMultiple: true,
+    maxFiles: 10,
+    instantUpload: false,
+  });
+</script>
 
 <script>
     $(document).ready(function() {
-        $('.summernote').summernote({ height: 300 });
         $("#addThisFormContainer").hide();
         $("#newBtn").click(function() {
             clearform();
@@ -145,7 +159,7 @@
 
         $("#addBtn").click(function() {
             if ($(this).val() == 'Create') {
-                var requiredFields = ['#blog_category_id', '#title', '#description', '#image'];
+                var requiredFields = ['#blog_category_id', '#title'];
                 for (var i = 0; i < requiredFields.length; i++) {
                     if ($(requiredFields[i]).val() === '') {
                         showError('Please fill all required fields.');
@@ -153,15 +167,27 @@
                     }
                 }
 
+                const pond = FilePond.find(document.querySelector('.filepond'));
+                const files = pond.getFiles();
+
+                if (files.length === 0) {
+                    showError('Please upload at least one image.');
+                    return;
+                }
+
                 var form_data = new FormData();
                 form_data.append("blog_category_id", $("#blog_category_id").val());
                 form_data.append("title", $("#title").val());
-                form_data.append("description", $("#description").val());
+                form_data.append("description", CKEDITOR.instances.description.getData());
                 form_data.append("source", $("#source").val());
-                var featureImgInput = document.getElementById('image');
-                if (featureImgInput.files && featureImgInput.files[0]) {
-                    form_data.append("image", featureImgInput.files[0]);
+                files.forEach(fileItem => {
+                    form_data.append('images[]', fileItem.file);
+                });
+
+                for (var pair of form_data.entries()) {
+                    console.log(pair[0] + ': ' + pair[1]);
                 }
+                // return;
 
                 $.ajax({
                     url: url,
@@ -181,7 +207,7 @@
             }
 
             if ($(this).val() == 'Update') {
-                var requiredFields = ['#blog_category_id', '#title', '#description'];
+                var requiredFields = ['#blog_category_id', '#title'];
                 for (var i = 0; i < requiredFields.length; i++) {
                     if ($(requiredFields[i]).val() === '') {
                         showError('Please fill all required fields.');
@@ -189,17 +215,27 @@
                     }
                 }
 
+                const pond = FilePond.find(document.querySelector('.filepond'));
+                const files = pond.getFiles();
+
+                if (files.length === 0) {
+                    showError('Please upload at least one image.');
+                    return;
+                }
+
                 var form_data = new FormData();
                 form_data.append("blog_category_id", $("#blog_category_id").val());
                 form_data.append("title", $("#title").val());
-                form_data.append("description", $("#description").val());
+                form_data.append("description", CKEDITOR.instances.description.getData());
                 form_data.append("source", $("#source").val());
                 form_data.append("codeid", $("#codeid").val());
-
-                var featureImgInput = document.getElementById('image');
-                if (featureImgInput.files && featureImgInput.files[0]) {
-                    form_data.append("image", featureImgInput.files[0]);
+                files.forEach(fileItem => {
+                    form_data.append('images[]', fileItem.file);
+                });
+                for (var pair of form_data.entries()) {
+                    console.log(pair[0] + ': ' + pair[1]);
                 }
+                // return;
 
                 $.ajax({
                     url: upurl,
@@ -209,8 +245,13 @@
                     processData: false,
                     data: form_data,
                     success: function(d) {
+                      console.log(d);
+                        if (d.status === 422) {
+                            showError(d.message);
+                            return;
+                        }
                         showSuccess('Blog updated successfully.');
-                        reloadPage(2000);
+                        // reloadPage(2000);
                     },
                     error: function(xhr, status, error) {
                         console.error(xhr.responseText);
@@ -249,21 +290,33 @@
         });
 
         function populateForm(data, categories) {
+            console.log(data);
             $("#blog_category_id").val(data.blog_category_id);
             $("#title").val(data.title);
-            $('#description').summernote('code', data.description);
             $("#source").val(data.source);
+            if (CKEDITOR.instances['description']) {
+                CKEDITOR.instances['description'].setData(data.description);
+            }
             $("#codeid").val(data.id);
             $("#addBtn").val('Update');
             $("#addBtn").html('Update');
             $("#header-title").html('Update blog');
             $("#addThisFormContainer").show(300);
             $("#newBtn").hide(100);
-            var image = document.getElementById('preview-image');
-            if (data.image) { 
-                image.src = data.image;
-            } else {
-                image.src = "#";
+            pond.removeFiles();
+
+            if (data.images && data.images.length > 0) {
+                data.images.forEach(function(image) {
+                    const imageUrl = image.image;
+                    const fileName = imageUrl.split('/').pop();
+
+                    fetch(imageUrl)
+                        .then(res => res.blob())
+                        .then(blob => {
+                            const file = new File([blob], fileName, { type: blob.type });
+                            pond.addFile(file);
+                        });
+                });
             }
         }
 
@@ -271,8 +324,7 @@
             $('#createThisForm')[0].reset();
             $("#addBtn").val('Create');
             $("#header-title").html('Add new blog');
-            $('#description').summernote('code', '');
-            $('#preview-image').attr('src', '#');
+            pond.removeFiles();
         }
 
         $(document).on('change', '.toggle-status', function() {

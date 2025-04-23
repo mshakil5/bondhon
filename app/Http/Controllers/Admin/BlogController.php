@@ -14,8 +14,8 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $data = Blog::where('type', 1)->with('category')->orderby('id', 'DESC')->get();
-        $categories = BlogCategory::where('type', 1)->latest()->get();
+        $data = Blog::with('images')->where('type', 1)->with('category')->orderby('id', 'DESC')->get();
+        $categories = BlogCategory::where('type', 1)->where('status', 1)->latest()->get();
         return view('admin.blog.index', compact('data', 'categories'));
     }
 
@@ -24,13 +24,13 @@ class BlogController extends Controller
         $validator = Validator::make($request->all(), [
             'blog_category_id' => 'required|exists:blog_categories,id',
             'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'required',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'source' => 'nullable|string|max:255',
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['status' => 422, 'message' => $validator->errors()->first()]);
+            return response()->json(['status' => 422, 'message' => $validator->errors()]);
         }
 
         $blog = new Blog();
@@ -38,13 +38,18 @@ class BlogController extends Controller
         $blog->title = $request->title;
         $blog->description = $request->description;
         $blog->source = $request->source;
+        $blog->save();
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images/blogs'), $imageName);
-            $blog->image = '/images/blogs/' . $imageName;
-        }
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('images/blogs'), $imageName);
+        
+                $blog->images()->create([
+                    'image' => '/images/blogs/' . $imageName,
+                ]);
+            }
+        }      
 
         $blog->slug = Str::slug($request->title);
         $blog->created_by = auth()->id();
@@ -55,7 +60,7 @@ class BlogController extends Controller
 
     public function edit($id)
     {
-        $data = Blog::findOrFail($id);
+        $data = Blog::with('images')->findOrFail($id);
         return response()->json(['data' => $data]);
     }
 
@@ -64,43 +69,54 @@ class BlogController extends Controller
         $validator = Validator::make($request->all(), [
             'blog_category_id' => 'required|exists:blog_categories,id',
             'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'required',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'source' => 'nullable|string|max:255',
         ]);
-
+    
         if ($validator->fails()) {
             return response()->json(['status' => 422, 'message' => $validator->errors()->first()]);
         }
-
+    
         $blog = Blog::findOrFail($request->codeid);
         $blog->blog_category_id = $request->blog_category_id;
         $blog->title = $request->title;
         $blog->description = $request->description;
         $blog->source = $request->source;
-
-        if ($request->hasFile('image')) {
-            if ($blog->image && file_exists(public_path($blog->image))) {
-                unlink(public_path($blog->image));
+    
+        foreach ($blog->images as $existingImage) {
+            if (file_exists(public_path($existingImage->image))) {
+                unlink(public_path($existingImage->image));
             }
-            $image = $request->file('image');
-            $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images/blogs'), $imageName);
-            $blog->image = '/images/blogs/' . $imageName;
+            $existingImage->delete();
         }
-
+    
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('images/blogs'), $imageName);
+    
+                $blog->images()->create([
+                    'image' => '/images/blogs/' . $imageName,
+                ]);
+            }
+        }
+    
         $blog->slug = Str::slug($request->title);
         $blog->updated_by = auth()->id();
         $blog->save();
-
+    
         return response()->json(['status' => 200, 'message' => 'Blog updated successfully.']);
     }
 
     public function delete($id)
     {
         $blog = Blog::findOrFail($id);
-        if ($blog->image && file_exists(public_path($blog->image))) {
-            unlink(public_path($blog->image));
+          foreach ($blog->images as $existingImage) {
+            if (file_exists(public_path($existingImage->image))) {
+                unlink(public_path($existingImage->image));
+            }
+            $existingImage->delete();
         }
         $blog->delete();
 

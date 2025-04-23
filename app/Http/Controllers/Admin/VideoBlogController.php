@@ -15,7 +15,7 @@ class VideoBlogController extends Controller
   public function index()
   {
       $data = Blog::where('type', 2)->with('category')->orderby('id', 'DESC')->get();
-      $categories = BlogCategory::where('type', 2)->latest()->get();
+      $categories = BlogCategory::where('type', 2)->where('status', 1)->latest()->get();
       return view('admin.blog.video', compact('data', 'categories'));
   }
 
@@ -95,11 +95,15 @@ class VideoBlogController extends Controller
   public function delete($id)
   {
       $blog = Blog::findOrFail($id);
-
+  
+      if ($blog->video && file_exists(public_path($blog->video))) {
+          unlink(public_path($blog->video));
+      }
+  
       $blog->delete();
-
+  
       return response()->json(['status' => 200, 'message' => 'Blog deleted successfully.']);
-  }
+  }  
 
   public function updateStatus(Request $request, $id)
   {
