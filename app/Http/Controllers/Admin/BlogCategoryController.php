@@ -12,7 +12,7 @@ class BlogCategoryController extends Controller
 {
     public function index()
     {
-        $data = BlogCategory::orderby('id', 'DESC')->get();
+        $data = BlogCategory::where('type', 1)->orderby('id', 'DESC')->get();
         return view('admin.blog_categories.index', compact('data'));
     }
 

@@ -30,7 +30,7 @@ class FrontendController extends Controller
     {  
         $galleries = Gallery::where('status', 1)->latest()->get();
         $categories = Category::has('gallery')->latest()->get();
-        $blogs = Blog::where('status', 1)->with('category')->select('title', 'created_at', 'slug', 'blog_category_id', 'image', 'description')->latest()->get();
+        $blogs = Blog::where('status', 1)->where('type', 1)->with('category')->select('title', 'created_at', 'slug', 'blog_category_id', 'image', 'description')->latest()->get();
         $section_status = SectionStatus::first();
         return view('frontend.index', compact('galleries', 'categories', 'section_status', 'blogs'));
     }

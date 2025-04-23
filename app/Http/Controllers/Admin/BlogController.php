@@ -14,8 +14,8 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $data = Blog::with('category')->orderby('id', 'DESC')->get();
-        $categories = BlogCategory::latest()->get();
+        $data = Blog::where('type', 1)->with('category')->orderby('id', 'DESC')->get();
+        $categories = BlogCategory::where('type', 1)->latest()->get();
         return view('admin.blog.index', compact('data', 'categories'));
     }
 

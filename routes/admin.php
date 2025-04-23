@@ -19,6 +19,8 @@ use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\VideoBlogCategoryController;
+use App\Http\Controllers\Admin\VideoBlogController;
 
 
 
@@ -180,6 +182,21 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::post('/blogs-update', [BlogController::class, 'update']);
     Route::get('/blogs/{id}', [BlogController::class, 'delete']);
     Route::post('/blogs/{id}/status', [BlogController::class, 'updateStatus'])->name('blogs.updateStatus');
+
+    // Blog Categories Routes
+    Route::get('/video-blog-categories', [VideoBlogCategoryController::class, 'index'])->name('allVideoBlogCategories');
+    Route::post('/video-blog-categories', [VideoBlogCategoryController::class, 'store']);
+    Route::get('/video-blog-categories/{id}/edit', [VideoBlogCategoryController::class, 'edit']);
+    Route::post('/video-blog-categories-update', [VideoBlogCategoryController::class, 'update']);
+    Route::get('/video-blog-categories/{id}', [VideoBlogCategoryController::class, 'delete']);
+    Route::post('/video-blog-categories/{id}/status', [VideoBlogCategoryController::class, 'updateStatus'])->name('blogCategories.updateStatus');
+
+    Route::get('/video-blogs', [VideoBlogController::class, 'index'])->name('allVideoBlogs');
+    Route::post('/video-blogs', [VideoBlogController::class, 'store']);
+    Route::get('/video-blogs/{id}/edit', [VideoBlogController::class, 'edit']);
+    Route::post('/video-blogs-update', [VideoBlogController::class, 'update']);
+    Route::get('/video-blogs/{id}', [VideoBlogController::class, 'delete']);
+    Route::post('/video-blogs/{id}/status', [BlogCoVideoBlogControllerntroller::class, 'updateStatus'])->name('blogs.updateStatus');
 
     Route::get('/blog/{id}/comments', [BlogController::class, 'viewComments'])->name('blog.comments');
 

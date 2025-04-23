@@ -112,6 +112,10 @@
 
                 <li><a href="{{route('allBlogs')}}" class="nav-link {{ (request()->is('admin/blogs*')) ? 'current' : '' }}">Blogs</a></li>
 
+                <li><a href="{{route('allVideoBlogCategories')}}" class="nav-link {{ (request()->is('admin/video-blog-categories*')) ? 'current' : '' }}">Video Blog Category</a></li>
+
+                <li><a href="{{route('allVideoBlogs')}}" class="nav-link {{ (request()->is('admin/video-blogs*')) ? 'current' : '' }}">Video Blogs</a></li>
+
                 <li><a href="{{route('sectionstatus')}}" class="nav-link {{ (request()->is('admin/section-status*')) ? 'current' : '' }}">Section Status</a></li>
 
             </ul>
@@ -168,10 +172,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="//cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
     <script>
-      CKEDITOR.editorConfig = function(config) {
+      CKEDITOR.disableAutoInline = true;
+    
+      CKEDITOR.editorConfig = function (config) {
+          config.removePlugins = 'autosave';
           config.versionCheck = false;
       };
-    </script>
+    
+      CKEDITOR.replace('description', {
+          versionCheck: false
+      });
+    </script>    
     {{-- <script>
         for (var i = 0; i < document.links.length; i++) {
             if (document.links[i].href === document.URL) {

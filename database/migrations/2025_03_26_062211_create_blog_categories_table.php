@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->boolean('status')->nullable();
+            $table->integer('type')->default(1); //1 = text blog, 2 = video blog
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();
