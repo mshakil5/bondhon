@@ -26,11 +26,15 @@
                             Published {{ $blog->created_at->diffForHumans() }}
                         </p>
 
-                        <div class="text-center mb-4">
-                            <img src="{{ asset($blog->image) }}" class="img-fluid rounded shadow-sm" 
-                                 alt="{{ $blog->title }}" style="max-height: 500px; width: 100%; object-fit: cover;">
-                        </div>
-
+                        @if ($blog->images && $blog->images->count())
+                            <div class="text-center mb-4">
+                                @foreach ($blog->images as $img)
+                                    <img src="{{ asset($img->image) }}" class="img-fluid rounded shadow-sm mb-3" 
+                                        alt="{{ $blog->title }}" style="max-height: 500px; width: 100%; object-fit: cover;">
+                                @endforeach
+                            </div>
+                        @endif
+                    
                         <div class="content mt-4">
                             <h3 class="txt-primary poppins-medium display-6">{{ Str::limit(strip_tags($blog->description), 100) }}</h3>
                             <hr class="my-4">

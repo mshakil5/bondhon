@@ -51,12 +51,25 @@ class BlogController extends Controller
             }
         }      
 
-        $blog->slug = Str::slug($request->title);
+        $blog->slug = $this->generateUniqueSlug($request->title, Blog::class);
         $blog->created_by = auth()->id();
         $blog->save();
 
         return response()->json(['status' => 200, 'message' => 'Blog created successfully.']);
     }
+
+    private function generateUniqueSlug($title, $model)
+    {
+        $slug = Str::slug($title);
+        $originalSlug = $slug;
+        $count = 1;
+    
+        while ($model::where('slug', $slug)->exists()) {
+            $slug = $originalSlug . '-' . $count++;
+        }
+    
+        return $slug;
+    }    
 
     public function edit($id)
     {
@@ -102,7 +115,7 @@ class BlogController extends Controller
             }
         }
     
-        $blog->slug = Str::slug($request->title);
+        // $blog->slug = Str::slug($request->title);
         $blog->updated_by = auth()->id();
         $blog->save();
     

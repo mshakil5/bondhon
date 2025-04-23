@@ -262,7 +262,10 @@
                     <div class="blog">
                         <div class="photo mb-3">
                             <a href="{{ route('blog.show', $blog->slug) }}">
-                                <img src="{{ asset($blog->image) }}" alt="{{ $blog->title }}">
+                              <img src="{{ asset($blog->images->first()->image ?? 'https://ionicframework.com/docs/img/demos/thumbnail.svg') }}" 
+                              alt="{{ $blog->title }}" 
+                              class="img-fluid" 
+                              style="width: 100%; height: 200px; object-fit: cover;">                         
                             </a>
                         </div>
                         <div class="blog-content">
@@ -285,8 +288,57 @@
                 </div>
             @endforeach
         </div>
+
+        <div class="row blog-row mt-5">
+            @foreach ($videoBlogs as $videoBlog)
+                <div class="col-md-4 wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="blog">
+                        <div class="photo mb-3">
+                          <a href="javascript:void(0);" onclick="showVideoModal('{{ asset($videoBlog->video) }}')">
+                              <img src="{{ $videoBlog->thumbnail ? asset($videoBlog->thumbnail) : 'https://ionicframework.com/docs/img/demos/thumbnail.svg' }}" alt="{{ $videoBlog->title }}" class="img-fluid" style="width: 100%; height: 200px; object-fit: cover;">
+                          </a>
+                        </div>
+                        <div class="blog-content">
+                            <div class="tag my-2">
+                                <a href="{{ route('blog.show', $videoBlog->slug) }}">
+                                    <iconify-icon icon="bi:film" class="me-1 fs-6 text-white"></iconify-icon>
+                                    {{ Str::limit($videoBlog->title, 10) }}
+                                </a>
+                            </div>       
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+      
+
     </div>
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      window.showVideoModal = function(videoUrl) {
+          var videoElement = document.getElementById('modalVideo');
+          videoElement.src = videoUrl;
+          var myModal = new bootstrap.Modal(document.getElementById('videoModal'));
+          myModal.show();
+      };
+  });
+</script>
+
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+      <div class="modal-content" style="padding: 0; margin: 0;">
+          <div class="modal-header" style="padding: 5px 10px;">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" style="padding: 5px;">
+              <video id="modalVideo" controls autoplay style="max-width: 100%; height: auto; width: 100%;"></video>
+          </div>
+      </div>
+  </div>
+</div>
+
 @endif
 
 @if($section_status->partners == 1)

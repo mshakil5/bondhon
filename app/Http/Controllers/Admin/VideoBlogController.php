@@ -36,7 +36,7 @@ class VideoBlogController extends Controller
       $blog = new Blog();
       $blog->blog_category_id = $request->blog_category_id;
       $blog->title = $request->title;
-      $blog->slug = Str::slug($request->title);
+      $blog->slug = $this->generateUniqueSlug($request->title, Blog::class);
       $blog->type = 2;
       $blog->created_by = auth()->id();
 
@@ -56,6 +56,19 @@ class VideoBlogController extends Controller
       $blog->save();
 
       return response()->json(['status' => 200, 'message' => 'Blog created successfully.']);
+  }
+
+  private function generateUniqueSlug($title, $model)
+  {
+      $slug = Str::slug($title);
+      $originalSlug = $slug;
+      $count = 1;
+  
+      while ($model::where('slug', $slug)->exists()) {
+          $slug = $originalSlug . '-' . $count++;
+      }
+  
+      return $slug;
   }
 
   public function edit($id)

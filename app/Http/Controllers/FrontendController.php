@@ -30,9 +30,10 @@ class FrontendController extends Controller
     {  
         $galleries = Gallery::where('status', 1)->latest()->get();
         $categories = Category::has('gallery')->latest()->get();
-        $blogs = Blog::where('status', 1)->where('type', 1)->with('category')->select('title', 'created_at', 'slug', 'blog_category_id', 'image', 'description')->latest()->get();
+        $blogs = Blog::with(['category', 'images'])->where('status', 1)->where('type', 1)->latest()->get();
+        $videoBlogs = Blog::with(['category', 'images'])->where('status', 1)->where('type', 2)->latest()->get();
         $section_status = SectionStatus::first();
-        return view('frontend.index', compact('galleries', 'categories', 'section_status', 'blogs'));
+        return view('frontend.index', compact('galleries', 'categories', 'section_status', 'blogs', 'videoBlogs'));
     }
 
     public function about()
@@ -395,11 +396,15 @@ class FrontendController extends Controller
 
     public function blogDetails($slug)
     {
-        $blog = Blog::with(['comments' => function ($query) {
-            $query->where('status', 1);
-        }])->where('slug', $slug)->firstOrFail();
+        $blog = Blog::with([
+            'comments' => function ($query) {
+                $query->where('status', 1);
+            },
+            'images' 
+        ])->where('slug', $slug)->firstOrFail();
+    
         return view('frontend.blog_details', compact('blog'));
-    }
+    }    
 
     public function storeComment(Request $request, $id)
     {
