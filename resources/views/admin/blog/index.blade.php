@@ -251,7 +251,7 @@
                             return;
                         }
                         showSuccess('Blog updated successfully.');
-                        // reloadPage(2000);
+                        reloadPage(2000);
                     },
                     error: function(xhr, status, error) {
                         console.error(xhr.responseText);

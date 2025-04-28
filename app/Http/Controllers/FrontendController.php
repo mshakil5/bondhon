@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\SectionStatus;
 use App\Models\Blog;
 use App\Models\BlogComment;
+use App\Models\BlogCategory;
 
 class FrontendController extends Controller
 {
@@ -30,10 +31,28 @@ class FrontendController extends Controller
     {  
         $galleries = Gallery::where('status', 1)->latest()->get();
         $categories = Category::has('gallery')->latest()->get();
-        $blogs = Blog::with(['category', 'images'])->where('status', 1)->where('type', 1)->latest()->get();
-        $videoBlogs = Blog::with(['category', 'images'])->where('status', 1)->where('type', 2)->latest()->get();
+        $textBlogCategories = BlogCategory::where('status', 1)
+        ->where('type', 1)
+        ->with(['blogs' => function($q) {
+            $q->where('status', 1)
+              ->where('type', 1)
+              ->latest();
+        }])
+        ->latest()
+        ->get();
+
+        $videoBlogCategories = BlogCategory::where('status', 1)
+        ->where('type', 2)
+        ->with(['blogs' => function($q) {
+            $q->where('status', 1)
+              ->where('type', 2)
+              ->latest();
+        }])
+        ->latest()
+        ->get();
+    
         $section_status = SectionStatus::first();
-        return view('frontend.index', compact('galleries', 'categories', 'section_status', 'blogs', 'videoBlogs'));
+        return view('frontend.index', compact('galleries', 'categories', 'section_status', 'textBlogCategories', 'videoBlogCategories'));
     }
 
     public function about()

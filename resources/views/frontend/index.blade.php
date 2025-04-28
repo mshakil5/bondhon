@@ -226,92 +226,78 @@
 </section>
 @endif
 
-@if($section_status->about_us == 1)
-<section class="about spacer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="about-right mt-2">
-                    <h2 class="title-global text-center">{{\App\Models\Master::where('name','homepage2ndsection')->first()->title}}</h2>
-                    {!! \App\Models\Master::where('name','homepage2ndsection')->first()->description !!}           
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-@endif
-
 @if($section_status->blog == 1)
 <section class="blog-section spacer">
     <div class="container">
-        <div class="row justify-content-center mb-5">
-            <div class="col-md-8 mx-auto ">
-                <h6 class="txt-primary fs-4 d-flex justify-content-center  align-items-center">
-                    <iconify-icon icon="ph:heart-fill" class="me-2"></iconify-icon>
-                    Latest news
-                </h6>
-                <h2 class="title-global text-center">
-                    Get Our bondhon Every <br>
-                    News & Blog
-                </h2>
-            </div>
-        </div>
-        <div class="row blog-row">
-            @foreach ($blogs as $blog)
-                <div class="col-md-4 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="blog">
-                        <div class="photo mb-3">
-                            <a href="{{ route('blog.show', $blog->slug) }}">
-                              <img src="{{ asset($blog->images->first()->image ?? 'https://ionicframework.com/docs/img/demos/thumbnail.svg') }}" 
-                              alt="{{ $blog->title }}" 
-                              class="img-fluid" 
-                              style="width: 100%; height: 200px; object-fit: cover;">                         
-                            </a>
-                        </div>
-                        <div class="blog-content">
-                            <div class="tag my-2">
-                                <a href="{{ route('blog.show', $blog->slug) }}">
-                                    <iconify-icon icon="bi:folder" class="me-1 fs-6 text-white"></iconify-icon>
-                                    {{ Str::limit($blog->title, 10) }}
-                                </a>
+        @foreach ($videoBlogCategories as $category)
+            @if ($category->blogs->count() > 0)
+                <div class="row justify-content-center mb-5">
+                    <div class="col-md-8 mx-auto">
+                        <h2 class="title-global text-center">
+                            {{ $category->name }}
+                        </h2>
+                    </div>
+                </div>
+        
+                <div class="row blog-row mt-5">
+                    @foreach ($category->blogs as $videoBlog)
+                        <div class="col-md-4 wow fadeInUp" data-wow-delay="0.6s">
+                            <div class="blog">
+                                <div class="photo mb-3">
+                                    <a href="javascript:void(0);" onclick="showVideoModal('{{ asset($videoBlog->video) }}')">
+                                        <img src="{{ $videoBlog->thumbnail ? asset($videoBlog->thumbnail) : 'https://ionicframework.com/docs/img/demos/thumbnail.svg' }}" alt="{{ $videoBlog->title }}" class="img-fluid" style="width: 100%; height: 200px; object-fit: cover;">
+                                    </a>
+                                </div>
+                                <div class="blog-content">
+                                    {{-- <div class="tag my-2"> --}}
+                                        <a href="{{ route('blog.show', $videoBlog->slug) }}" class="fs-5 link-title d-block my-3" style="text-align: justify;">
+                                            {{ $videoBlog->title }}
+                                        </a>
+                                    {{-- </div> --}}
+                                </div>
                             </div>
-
-                            <a href="{{ route('blog.show', $blog->slug) }}" class="fs-3 link-title d-block my-3">
-                                {{ Str::limit($blog->title, 100) }}
-                            </a>
-                          
-                            <p>
-                                {{ Str::limit(strip_tags($blog->description), 100) }}
-                            </p>              
                         </div>
-                    </div>
+                    @endforeach
                 </div>
-            @endforeach
-        </div>
+            @endif
+        @endforeach
 
-        <div class="row blog-row mt-5">
-            @foreach ($videoBlogs as $videoBlog)
-                <div class="col-md-4 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="blog">
-                        <div class="photo mb-3">
-                          <a href="javascript:void(0);" onclick="showVideoModal('{{ asset($videoBlog->video) }}')">
-                              <img src="{{ $videoBlog->thumbnail ? asset($videoBlog->thumbnail) : 'https://ionicframework.com/docs/img/demos/thumbnail.svg' }}" alt="{{ $videoBlog->title }}" class="img-fluid" style="width: 100%; height: 200px; object-fit: cover;">
-                          </a>
-                        </div>
-                        <div class="blog-content">
-                            <div class="tag my-2">
-                                <a href="{{ route('blog.show', $videoBlog->slug) }}">
-                                    <iconify-icon icon="bi:film" class="me-1 fs-6 text-white"></iconify-icon>
-                                    {{ Str::limit($videoBlog->title, 10) }}
-                                </a>
-                            </div>       
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
+        @foreach ($textBlogCategories as $category)
+          <div class="row justify-content-center mb-5">
+              <div class="col-md-8 mx-auto">
+                  <h2 class="title-global text-center">
+                      {{ $category->name }}
+                  </h2>
+              </div>
+          </div>
       
-
+          <div class="row blog-row">
+              @foreach ($category->blogs as $blog)
+                  <div class="col-md-4 wow fadeInUp" data-wow-delay="0.6s">
+                      <div class="blog">
+                          <div class="photo mb-3">
+                              <a href="{{ route('blog.show', $blog->slug) }}">
+                                  <img src="{{ asset($blog->images->first()->image ?? 'https://ionicframework.com/docs/img/demos/thumbnail.svg') }}" 
+                                      alt="{{ $blog->title }}" 
+                                      class="img-fluid" 
+                                      style="width: 100%; height: 200px; object-fit: cover;">
+                              </a>
+                          </div>
+                          <div class="blog-content">
+      
+                              <a href="{{ route('blog.show', $blog->slug) }}" class="fs-5 link-title d-block my-3" style="text-align: justify;">
+                                  {{ Str::limit($blog->title, 100) }}
+                              </a>
+      
+                              <p>
+                                  {{ Str::limit(strip_tags($blog->description), 100) }}
+                              </p>              
+                          </div>
+                      </div>
+                  </div>
+              @endforeach
+          </div>
+        @endforeach
     </div>
 </section>
 
@@ -365,6 +351,21 @@
             </div>
             <div class="mx-1 d-flex justify-content-center align-items-center">
                 <img src="{{ asset('assets/images/partners/4.png')}}" class="img-fluid  wow bounce " data-wow-delay="0.6s" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+@endif
+
+@if($section_status->about_us == 1)
+<section class="about spacer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="about-right mt-2">
+                    <h2 class="title-global text-center">{{\App\Models\Master::where('name','homepage2ndsection')->first()->title}}</h2>
+                    {!! \App\Models\Master::where('name','homepage2ndsection')->first()->description !!}           
+                </div>
             </div>
         </div>
     </div>

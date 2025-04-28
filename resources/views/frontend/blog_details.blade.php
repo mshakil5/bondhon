@@ -22,9 +22,20 @@
                     @endif
 
                         <h2 class="txt-primary poppins-bold display-4 text-center">{{ $blog->title }}</h2>
-                        <p class="text-muted small text-center">
+                        <p class="text-muted small text-center my-2">
                             Published {{ $blog->created_at->diffForHumans() }}
                         </p>
+
+                        @if ($blog->type == 2)
+                            <div class="text-center">
+                                <video controls style="width: 100%; max-width: 800px;">
+                                    <source src="{{ asset($blog->video) }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        @endif
+
+                        @if($blog->type == 1)
 
                         @if ($blog->images && $blog->images->count())
                             <div class="text-center mb-4">
@@ -36,8 +47,6 @@
                         @endif
                     
                         <div class="content mt-4">
-                            <h3 class="txt-primary poppins-medium display-6">{{ Str::limit(strip_tags($blog->description), 100) }}</h3>
-                            <hr class="my-4">
                             <p class="txt-primary lead" style="text-align: justify;">
                                 {!! $blog->description !!}
                             </p>
@@ -88,6 +97,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
